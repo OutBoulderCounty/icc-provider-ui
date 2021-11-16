@@ -1,8 +1,14 @@
 import Dashboard from "./components/dash";
+import Login from "./components/login";
+import { useState } from "react";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
     return (
-      <Dashboard />
+      <>
+        {authenticated ? <Dashboard /> : <Login />}
+      </>
     );
 }
 

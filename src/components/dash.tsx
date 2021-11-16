@@ -153,11 +153,13 @@ const Dashboard: React.FC = () => {
       </div>
     )
   }
+
   const logoutFn = () => {
     console.log("should be logging out now")
     // TODO: logout
     return null
   }
+
   return (
     <>
       <Error message="User is not allowed to access the admin dashboard" />
