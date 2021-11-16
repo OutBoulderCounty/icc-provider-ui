@@ -13,8 +13,8 @@ function Disclaimer() {
                         <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
                             Disclaimer
                         </span>
-                        <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Ensuring Success for Everyone
+                        <span className="mt-2 block text-3xl text-center leading-8 font-semibold tracking-tight text-gray-900 sm:text-4xl">
+                            Understanding this resource
                         </span>
                     </h1>
                     <p className="mt-8 text-xl text-gray-500 leading-8">
@@ -28,43 +28,41 @@ function Disclaimer() {
                 <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
                     <p>
                         Our questionnaire is designed to provide our users with
-                        a fully transparent view into the responses that you
-                        input into this form. <strong>Please be aware</strong>{' '}
-                        that all your responses will be visible for all users;
-                        taking the time to use full sentences and correct
-                        grammar will improve your profile.
+                        a fully transparent view of the responses that you
+                        input. <strong>Please be aware</strong> that all your
+                        responses will be visible for all users once they are
+                        approved.
                     </p>
                     <p>
-                        None of the questions on this form are mandatory, this
-                        decision was made to provide you the option to submit
-                        the form and return to it later to fill it out in its
-                        entirety. We encourage you to fill out as much as you
-                        are able to before submitting your questionnaire as
-                        blank answers may be perceived by users as an answer.
+                        None of the questions on this form are mandatory and
+                        you’re able to submit the form to return later and fill
+                        it out in its entirety. We encourage you to fill out as
+                        much as you are able to before submitting your
+                        questionnaire as blank answers may be perceived by users
+                        as an answer.
                     </p>
                     <p>
                         Users will be able to see the date in which you filled
                         out your latest version of the questionnaire and you
-                        will receive an annual email advising you to adjust your
+                        will receive periodic emails advising you to adjust your
                         answers to best reflect your dedication to providing
                         safe and affirming care.
                     </p>
                     <p>
-                        It is encouraged that you answer honestly and
+                        It is paramount that you answer honestly and
                         transparently. We ask providers about their competence
                         with different communities and realize that not every
                         provider has expertise across all identities. You are
                         not required to have expertise across all LGBTQ
-                        identities and PLHIV in order to be listed in this
-                        directory.
+                        identities in order to be listed in this directory.
                     </p>
                     <p>
                         This resource is for providers that are willing and able
-                        to provide safe and affirming care to the LGBTQ and
-                        PLHIV communities. <strong>Please note</strong> that
-                        being willing to provide care does not mean that you’re
-                        able to provide the competent care needed. It’s advised
-                        you have completed training with reputable providers.
+                        to provide safe and affirming care to the LGBTQ
+                        communities. <strong>Please note</strong> that being
+                        willing to provide care does not mean that you’re able
+                        to provide the competent care needed. It’s advised you
+                        have completed training with reputable providers.
                     </p>
                     <p>
                         Here are some things you can have on hand to speed up
@@ -84,23 +82,17 @@ function Disclaimer() {
 
                     <p>
                         You can follow this link [link to glossary] to find a
-                        small glossary of terms that we use throughout our
+                        glossary of terms that we use throughout our
                         questionnaire.
                     </p>
-                    <p>
-                        You can follow this link [link to resources] to find
-                        resources on providers for training in these areas.
-                        (Please be patient as we build our training resources
-                        out over time and please let us know if you’d like to
-                        submit a reputable provider)
+                    {/* <p>
+                    You can follow this link [link to resources] to find resources on providers for training in these areas. (Please be patient as we build our training resources out over time and please let us know if you’d like to submit a reputable provider)
+                    </p> */}
+                    <p id="comments-description" className="text-gray-500">
+                        Please acknowledge here that you understand this
+                        resource is solely designed to ease the stress on LGBTQ+
+                        people searching for healthcare providers.
                     </p>
-                    <blockquote>
-                        <p>
-                            This is a directory of competent and affirming
-                            providers. Tolerance is not affirmation.
-                        </p>
-                        LGBTQ community member
-                    </blockquote>
                     <Checkbox />
                 </div>
             </div>
@@ -127,12 +119,13 @@ export function Checkbox() {
                         htmlFor="comments"
                         className="font-medium text-gray-700"
                     >
-                        Confirm
+                        Acknowledged
                     </label>
-                    <p id="comments-description" className="text-gray-500">
-                        I have read and agree to the Terms of Service and
-                        Privacy Policy.
-                    </p>
+                    {/* <p id="comments-description" className="text-gray-500">
+                        Please acknowledge here that you understand this
+                        resource is solely designed to ease the stress on LGBTQ+
+                        people searching for healthcare providers.
+                    </p> */}
                 </div>
             </div>
         </fieldset>

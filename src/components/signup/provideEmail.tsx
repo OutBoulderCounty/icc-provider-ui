@@ -1,16 +1,17 @@
 import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
+import useSession from '../../context/sessionContext';
 
-type Props = {
-  setEmail: (email: string) => void;
-}
 
-const ProvideEmail: React.FC<Props> = ({ setEmail }: Props) => {
-  const [providedEmail, setProvidedEmail] = React.useState<string>('');
+const ProvideEmail: React.FC = () => {
+  const data = useSession();
+  const { session, setSession } = data;
+
+  const [providedEmail, setProvidedEmail] = React.useState<string>(session.email);
 
   const handleLoginFn = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setEmail(providedEmail);
+    setSession(prev => ({ ...prev, email: providedEmail, signUpStep: 2 }));
   }
 
     return (
@@ -53,48 +54,7 @@ const ProvideEmail: React.FC<Props> = ({ setEmail }: Props) => {
                                     onChange={(e) => setProvidedEmail(e.target.value)}
                                 />
                             </div>
-                            {/* <div>
-                                <label htmlFor="password" className="sr-only">
-                                    Password
-                                </label>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Password"
-                                />
-                            </div> */}
                         </div>
-
-                        {/* <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                />
-                                <label
-                                    htmlFor="remember-me"
-                                    className="ml-2 block text-sm text-gray-900"
-                                >
-                                    Remember me
-                                </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <a
-                                    href="#"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                                >
-                                    Forgot your password?
-                                </a>
-                            </div>
-                        </div> */}
-
                         <div>
                             <button
                                 type="submit"

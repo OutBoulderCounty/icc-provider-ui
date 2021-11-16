@@ -1,7 +1,7 @@
 import React from "react";
 import Disclaimer from "./disclaimer";
-import ProviderInfo from "./provider_info";
-import ProvideEmail from "./provide_email";
+import ProviderInfo from "./providerInfo";
+import ProvideEmail from "./provideEmail";
 import StepTracker from "./steps";
 
 
@@ -9,18 +9,19 @@ import StepTracker from "./steps";
 type Props = {
   step: number;
   setStep: (step: number) => void;
+  setEmail: (email: string) => void;
 }
 
 const signUpComponent = [<Disclaimer />, <ProviderInfo />];
 
 
-const SignUpProcess: React.FC<Props> = ({ step, setStep }: Props) => {
+const SignUpProcess: React.FC<Props> = ({ step, setStep, setEmail }: Props) => {
 
 
 
   return (
     <>
-    <StepTracker setStep={setStep} />
+    <StepTracker setStep={setStep} setEmail={setEmail} />
     {signUpComponent[step - 2]}
     </>
     )

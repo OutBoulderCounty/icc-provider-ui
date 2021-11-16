@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 
-import ProvideEmail from './signup/provide_email';
-import SignUpProcess from './signup/signup_process';
+import ProvideEmail from './signup/provideEmail';
+import SignUpProcess from './signup/signupProcess';
 
 import { HomeIcon, ClipboardIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 import NavBar, { navItem } from './navBar';
+import useSession from '../context/sessionContext';
 
 const navigation: navItem[] = [
     { name: 'Dashboard', path: '/admin', Icon: HomeIcon, Link },
@@ -18,32 +19,34 @@ const navigation: navItem[] = [
     },
 ];
 
-type Props = {
-    authenticated: boolean;
-    setAuthenticated: (authenticated: boolean) => void;
-};
+// type Props = {
+//     authenticated: boolean;
+//     setAuthenticated: (authenticated: boolean) => void;
+// };
 
 const authorized = ['verykenny@gmail.com'];
 
-const Login: React.FC<Props> = ({ authenticated, setAuthenticated }: Props) => {
-    const [email, setEmail] = React.useState<string>('');
-    const [step, setStep] = React.useState<number>(1);
+const Login: React.FC = () => {
+    const data = useSession();
+    const { session, setSession } = data;
+    const { email, authenticated, signUpStep } = session;
+
 
     useEffect(() => {
         // Check if user has completed all the signup steps
         // If they have, then set authenticated to true
         if (authorized.includes(email)) {
-            setAuthenticated(true);
-        } else {
-            setStep(2);
+            setSession(prev => ({ ...prev, authenticated: true }));
+        } else if (email) {
+            setSession(prev => ({ ...prev, signUpStep: 2 }));
         }
-    }, [email, setAuthenticated]);
+    }, [email, setSession]);
 
     if (!email) {
         return (
             <>
                 <NavBar items={navigation} loggedIn={false} />
-                <ProvideEmail setEmail={setEmail} />
+                <ProvideEmail />
             </>
         );
     }
@@ -51,9 +54,14 @@ const Login: React.FC<Props> = ({ authenticated, setAuthenticated }: Props) => {
     return (
         <>
             <NavBar items={navigation} loggedIn={false} />
-            <SignUpProcess step={step} setStep={setStep} />
+            {/* <SignUpProcess step={step} setStep={setStep} setEmail={setEmail} /> */}
         </>
     );
+
+    return (
+      <>
+      </>
+    )
 };
 
 export default Login;

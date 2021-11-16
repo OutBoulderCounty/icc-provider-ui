@@ -7,7 +7,7 @@ function App() {
 
     return (
       <>
-        {authenticated ? <Dashboard /> : <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />}
+        {authenticated ? <Dashboard /> : <Login />}
       </>
     );
 }
