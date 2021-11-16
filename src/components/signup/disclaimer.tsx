@@ -100,7 +100,7 @@ function Disclaimer() {
                     </p>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="max-w-3xl mx-auto flex justify-between">
-                            <Checkbox />
+                            <Checkbox setChecked={setChecked} checked={checked} />
                             <Button className="disabled:opacity-50 disabled:cursor-not-allowed" color="violet" disabled={!checked}>Continue</Button>
                         </div>
                     </div>
@@ -110,7 +110,12 @@ function Disclaimer() {
     );
 }
 
-export function Checkbox() {
+type Props = {
+  checked: boolean;
+  setChecked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
     return (
         <fieldset className="space-y-5">
             <legend className="sr-only">Notifications</legend>
@@ -121,6 +126,8 @@ export function Checkbox() {
                         aria-describedby="comments-description"
                         name="comments"
                         type="checkbox"
+                        checked={checked}
+                        onChange={() => setChecked(prev => !prev)}
                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                     />
                 </div>
