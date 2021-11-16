@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   children?: React.ReactNode
   color: "violet" | "white" | "transparent" | "transparent-dark"
-  onClick?: () => null
+  onClick?: () => null | void
   className?: string
   btnClassName?: string
   disabled?: boolean

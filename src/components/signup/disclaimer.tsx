@@ -1,8 +1,14 @@
 import React from 'react';
+import useSession from '../../context/sessionContext';
 import Button from '../button';
 
 function Disclaimer() {
   const [checked, setChecked] = React.useState<boolean>(false);
+  const { session, setSession } = useSession()
+
+  const handleSubmitDisclaimer = () => {
+    setSession(prev => ({...prev, disclaimer: true, signUpStep: 3 }))
+  };
 
     return (
         <div className="relative py-16 bg-white overflow-hidden">
@@ -101,7 +107,7 @@ function Disclaimer() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="max-w-3xl mx-auto flex justify-between">
                             <Checkbox setChecked={setChecked} checked={checked} />
-                            <Button className="disabled:opacity-50 disabled:cursor-not-allowed" color="violet" disabled={!checked}>Continue</Button>
+                            <Button className="disabled:opacity-50 disabled:cursor-not-allowed" color="violet" disabled={!checked} onClick={handleSubmitDisclaimer}>Continue</Button>
                         </div>
                     </div>
                 </div>
@@ -138,11 +144,6 @@ export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
                     >
                         Acknowledged
                     </label>
-                    {/* <p id="comments-description" className="text-gray-500">
-                        Please acknowledge here that you understand this
-                        resource is solely designed to ease the stress on LGBTQ+
-                        people searching for healthcare providers.
-                    </p> */}
                 </div>
             </div>
         </fieldset>

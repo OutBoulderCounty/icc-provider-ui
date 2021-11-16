@@ -4,6 +4,7 @@ interface SessionInterface {
     email: string;
     authenticated: boolean;
     signUpStep: number;
+    disclaimer: boolean;
 }
 
 interface AppContextInterface {
@@ -22,6 +23,7 @@ export const SessionProvider: React.FC<Props> = ({ children }: Props) => {
         email: '',
         authenticated: false,
         signUpStep: 0,
+        disclaimer: false,
     });
 
     return (
