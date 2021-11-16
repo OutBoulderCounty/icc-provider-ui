@@ -1,4 +1,9 @@
+import React from 'react';
+import Button from '../button';
+
 function Disclaimer() {
+  const [checked, setChecked] = React.useState<boolean>(false);
+
     return (
         <div className="relative py-16 bg-white overflow-hidden">
             <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -93,7 +98,12 @@ function Disclaimer() {
                         resource is solely designed to ease the stress on LGBTQ+
                         people searching for healthcare providers.
                     </p>
-                    <Checkbox />
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-3xl mx-auto flex justify-between">
+                            <Checkbox />
+                            <Button className="disabled:opacity-50 disabled:cursor-not-allowed" color="violet" disabled={!checked}>Continue</Button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

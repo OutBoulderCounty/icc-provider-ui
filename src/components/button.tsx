@@ -6,6 +6,7 @@ type Props = {
   onClick?: () => null
   className?: string
   btnClassName?: string
+  disabled?: boolean
 }
 
 const Button: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const Button: React.FC<Props> = ({
   onClick,
   className,
   btnClassName,
+  disabled
 }: Props) => {
   const colorClasses: string =
     color === "white"
@@ -27,8 +29,9 @@ const Button: React.FC<Props> = ({
     <div className={`sm:flex sm:items-center place-self-center ${className}`}>
       <button
         type="button"
-        className={`inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 w-36 focus:ring-violet ${colorClasses} ${btnClassName}`}
+        className={`disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 w-36 focus:ring-violet ${colorClasses} ${btnClassName}`}
         onClick={onClick}
+        disabled={disabled}
       >
         {children}
       </button>

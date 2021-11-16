@@ -4,7 +4,7 @@ import useSession from '../../context/sessionContext';
 
 const steps = [
     { id: 1, name: 'Provide email', status: 'complete' },
-    { id: 2, name: 'Provider success', status: 'current' },
+    { id: 2, name: 'About this resource', status: 'current' },
     { id: 3, name: 'Provider information', status: 'upcoming' },
 ];
 

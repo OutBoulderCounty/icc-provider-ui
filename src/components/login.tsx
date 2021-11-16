@@ -8,18 +8,18 @@ import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
 
 const navigation: navItem[] = [
-    {
-        name: 'Dashboard',
-        path: '/admin',
-        Icon: HomeIcon,
-        Link,
-    },
-    {
-        name: 'Forms',
-        path: '/admin/forms',
-        Icon: ClipboardIcon,
-        Link,
-    },
+    // {
+    //     name: 'Dashboard',
+    //     path: '/admin',
+    //     Icon: HomeIcon,
+    //     Link,
+    // },
+    // {
+    //     name: 'Forms',
+    //     path: '/admin/forms',
+    //     Icon: ClipboardIcon,
+    //     Link,
+    // },
 ];
 
 const authorizedList = ['verykenny@gmail.com'];
