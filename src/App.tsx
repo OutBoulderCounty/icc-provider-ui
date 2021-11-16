@@ -1,15 +1,14 @@
-import React from "react";
-import Dashboard from "./components/dash";
-import Login from "./components/login";
+import React from 'react';
+import Dashboard from './components/dash';
+import Login from './components/login';
+import useSession from './context/sessionContext';
 
-function App() {
-  const [authenticated, setAuthenticated] = React.useState<boolean>(false);
+const App: React.FC = () => {
+    const {
+        session: { authenticated },
+    } = useSession();
 
-    return (
-      <>
-        {authenticated ? <Dashboard /> : <Login />}
-      </>
-    );
+    return <>{authenticated ? <Dashboard /> : <Login />}</>;
 }
 
 export default App;

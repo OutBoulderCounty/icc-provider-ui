@@ -1,18 +1,24 @@
 import React from 'react';
+
 import { LockClosedIcon } from '@heroicons/react/solid';
 import useSession from '../../context/sessionContext';
 
-
 const ProvideEmail: React.FC = () => {
-  const data = useSession();
-  const { session, setSession } = data;
+    const {
+        session: { email },
+        setSession,
+    } = useSession();
 
-  const [providedEmail, setProvidedEmail] = React.useState<string>(session.email);
+    const [providedEmail, setProvidedEmail] = React.useState<string>(email);
 
-  const handleLoginFn = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    setSession(prev => ({ ...prev, email: providedEmail, signUpStep: 2 }));
-  }
+    const handleLoginFn = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        setSession((prev) => ({
+            ...prev,
+            email: providedEmail,
+            signUpStep: 2,
+        }));
+    };
 
     return (
         <>
@@ -51,7 +57,9 @@ const ProvideEmail: React.FC = () => {
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Email address"
                                     value={providedEmail}
-                                    onChange={(e) => setProvidedEmail(e.target.value)}
+                                    onChange={(e) =>
+                                        setProvidedEmail(e.target.value)
+                                    }
                                 />
                             </div>
                         </div>
@@ -74,6 +82,6 @@ const ProvideEmail: React.FC = () => {
             </div>
         </>
     );
-}
+};
 
 export default ProvideEmail;

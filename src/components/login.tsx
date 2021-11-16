@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-
-import ProvideEmail from './signup/provideEmail';
-import SignUpProcess from './signup/signupProcess';
-
-import { HomeIcon, ClipboardIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
+import { HomeIcon, ClipboardIcon } from '@heroicons/react/outline';
 
 import NavBar, { navItem } from './navBar';
+import ProvideEmail from './signup/provideEmail';
+import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
 
 const navigation: navItem[] = [
-    { name: 'Dashboard', path: '/admin', Icon: HomeIcon, Link },
+    {
+        name: 'Dashboard',
+        path: '/admin',
+        Icon: HomeIcon,
+        Link,
+    },
     {
         name: 'Forms',
         path: '/admin/forms',
@@ -19,26 +22,21 @@ const navigation: navItem[] = [
     },
 ];
 
-// type Props = {
-//     authenticated: boolean;
-//     setAuthenticated: (authenticated: boolean) => void;
-// };
-
-const authorized = ['verykenny@gmail.com'];
+const authorizedList = ['verykenny@gmail.com'];
 
 const Login: React.FC = () => {
-    const data = useSession();
-    const { session, setSession } = data;
-    const { email, authenticated, signUpStep } = session;
-
+    const {
+        session: { email },
+        setSession,
+    } = useSession();
 
     useEffect(() => {
         // Check if user has completed all the signup steps
         // If they have, then set authenticated to true
-        if (authorized.includes(email)) {
-            setSession(prev => ({ ...prev, authenticated: true }));
+        if (authorizedList.includes(email)) {
+            setSession((prev) => ({ ...prev, authenticated: true }));
         } else if (email) {
-            setSession(prev => ({ ...prev, signUpStep: 2 }));
+            setSession((prev) => ({ ...prev, signUpStep: 2 }));
         }
     }, [email, setSession]);
 
@@ -54,14 +52,9 @@ const Login: React.FC = () => {
     return (
         <>
             <NavBar items={navigation} loggedIn={false} />
-            {/* <SignUpProcess step={step} setStep={setStep} setEmail={setEmail} /> */}
+            <SignUpProcess />
         </>
     );
-
-    return (
-      <>
-      </>
-    )
 };
 
 export default Login;

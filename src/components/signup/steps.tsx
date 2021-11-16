@@ -1,8 +1,6 @@
-type Props = {
-    step?: number;
-    setStep: (step: number) => void;
-    setEmail: (email: string) => void;
-};
+import React from 'react';
+
+import useSession from '../../context/sessionContext';
 
 const steps = [
     { id: 1, name: 'Provide email', status: 'complete' },
@@ -10,17 +8,16 @@ const steps = [
     { id: 3, name: 'Provider information', status: 'upcoming' },
 ];
 
-const StepTracker: React.FC<Props> = ({ setStep, setEmail }: Props) => {
-
+const StepTracker: React.FC = () => {
+    const { setSession } = useSession();
 
     const handleChangeStep = (step: number) => {
-      if (step === 1) {
-        setEmail('');
-      } else {
-        setStep(step);
-      }
-    }
-
+        if (step === 1) {
+            setSession((prev) => ({ ...prev, signUpStep: step }));
+        } else {
+            setSession((prev) => ({ ...prev, signUpStep: step }));
+        }
+    };
 
     return (
         <nav aria-label="Progress">
@@ -53,9 +50,7 @@ const StepTracker: React.FC<Props> = ({ setStep, setEmail }: Props) => {
                                 </span>
                             </div>
                         ) : (
-                            <div
-                                className="group pl-4 py-2 flex flex-col border-l-4 border-gray-200 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4"
-                            >
+                            <div className="group pl-4 py-2 flex flex-col border-l-4 border-gray-200 md:pl-0 md:pt-4 md:pb-0 md:border-l-0 md:border-t-4">
                                 <span className="text-xs text-gray-500 font-semibold tracking-wide uppercase">
                                     {step.id}
                                 </span>
