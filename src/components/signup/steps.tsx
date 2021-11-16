@@ -13,10 +13,10 @@ const steps = [
 
 const StepTracker: React.FC<Props> = ({ setStep }: Props) => {
 
-  
+
   return (
     <nav aria-label="Progress">
-      <ol className="space-y-4 md:flex md:space-y-0 md:space-x-8">
+      <ol className="max-w-7xl mx-auto space-y-4 md:flex md:space-y-0 md:space-x-8">
         {steps.map((step) => (
           <li key={step.name} className="md:flex-1">
             {step.status === 'complete' ? (

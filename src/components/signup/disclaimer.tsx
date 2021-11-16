@@ -35,42 +35,69 @@ function Disclaimer() {
                         grammar will improve your profile.
                     </p>
                     <p>
-                    None of the questions on this form are mandatory, this decision was made to provide you the option to submit the form and return to it later to fill it out in its entirety. We encourage you to fill out as much as you are able to before submitting your questionnaire as blank answers may be perceived by users as an answer.
+                        None of the questions on this form are mandatory, this
+                        decision was made to provide you the option to submit
+                        the form and return to it later to fill it out in its
+                        entirety. We encourage you to fill out as much as you
+                        are able to before submitting your questionnaire as
+                        blank answers may be perceived by users as an answer.
                     </p>
                     <p>
-                    Users will be able to see the date in which you filled out your latest version of the questionnaire and you will receive an annual email advising you to adjust your answers to best reflect your dedication to providing safe and affirming care.
-
+                        Users will be able to see the date in which you filled
+                        out your latest version of the questionnaire and you
+                        will receive an annual email advising you to adjust your
+                        answers to best reflect your dedication to providing
+                        safe and affirming care.
                     </p>
                     <p>
-                    It is encouraged that you answer honestly and transparently. We ask providers about their competence with different communities and realize that not every provider has expertise across all identities. You are not required to have expertise across all LGBTQ identities and PLHIV in order to be listed in this directory.
+                        It is encouraged that you answer honestly and
+                        transparently. We ask providers about their competence
+                        with different communities and realize that not every
+                        provider has expertise across all identities. You are
+                        not required to have expertise across all LGBTQ
+                        identities and PLHIV in order to be listed in this
+                        directory.
                     </p>
                     <p>
-                    This resource is for providers that are willing and able to provide safe and affirming care to the LGBTQ and PLHIV communities. <strong>Please note</strong>{' '} that being willing to provide care does not mean that you’re able to provide the competent care needed. It’s advised you have completed training with reputable providers.
-
+                        This resource is for providers that are willing and able
+                        to provide safe and affirming care to the LGBTQ and
+                        PLHIV communities. <strong>Please note</strong> that
+                        being willing to provide care does not mean that you’re
+                        able to provide the competent care needed. It’s advised
+                        you have completed training with reputable providers.
                     </p>
                     <p>
-                    Here are some things you can have on hand to speed up the process of your submission.
-
+                        Here are some things you can have on hand to speed up
+                        the process of your submission.
                     </p>
                     <ul>
                         <li>
-                        Copies of your paperwork - anything a patient might need to sign or view.
+                            Copies of your paperwork - anything a patient might
+                            need to sign or view.
                         </li>
                         <li>
-                        Information about the training you and your staff have received.
+                            Information about the training you and your staff
+                            have received.
                         </li>
                         <li>A head shot.</li>
                     </ul>
 
                     <p>
-                    You can follow this link [link to glossary] to find a small glossary of terms that we use throughout our questionnaire.
+                        You can follow this link [link to glossary] to find a
+                        small glossary of terms that we use throughout our
+                        questionnaire.
                     </p>
                     <p>
-                    You can follow this link [link to resources] to find resources on providers for training in these areas. (Please be patient as we build our training resources out over time and please let us know if you’d like to submit a reputable provider)
+                        You can follow this link [link to resources] to find
+                        resources on providers for training in these areas.
+                        (Please be patient as we build our training resources
+                        out over time and please let us know if you’d like to
+                        submit a reputable provider)
                     </p>
                     <blockquote>
                         <p>
-                        This is a directory of competent and affirming providers. Tolerance is not affirmation.
+                            This is a directory of competent and affirming
+                            providers. Tolerance is not affirmation.
                         </p>
                         LGBTQ community member
                     </blockquote>
