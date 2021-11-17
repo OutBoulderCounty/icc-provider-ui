@@ -21,7 +21,7 @@ const ProviderInfo: React.FC = () => {
 
     return (
         <>
-            <div className="max-w-7xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto">
                     <form className="space-y-8 divide-y divide-gray-200">
                         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
