@@ -1,6 +1,24 @@
 import React from 'react';
 
 const ProviderInfo: React.FC = () => {
+    const [image, setImage] = React.useState('');
+    const imageInput = React.useRef<HTMLInputElement>(null);
+
+    const handleClickSelect = () => {
+        if (imageInput.current) {
+            imageInput.current.click();
+        }
+    };
+
+    const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target) {
+            if (event.target.files && event.target.files[0]) {
+                setImage(URL.createObjectURL(event.target.files[0]));
+                console.log(image);
+            }
+        }
+    };
+
     return (
         <>
             <div className="max-w-7xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
@@ -64,7 +82,14 @@ const ProviderInfo: React.FC = () => {
                                             htmlFor="phone"
                                             className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                                         >
-                                            Phone number<span className="text-violet-light font-bold" title="Required" aria-label="Required">*</span>
+                                            Phone number
+                                            <span
+                                                className="text-violet-light font-bold"
+                                                title="Required"
+                                                aria-label="Required"
+                                            >
+                                                *
+                                            </span>
                                         </label>
                                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                                             <input
@@ -167,7 +192,14 @@ const ProviderInfo: React.FC = () => {
                                             htmlFor="first-name"
                                             className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                                         >
-                                            First name<span className="text-violet-light font-bold" title="Required" aria-label="Required">*</span>
+                                            First name
+                                            <span
+                                                className="text-violet-light font-bold"
+                                                title="Required"
+                                                aria-label="Required"
+                                            >
+                                                *
+                                            </span>
                                         </label>
                                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                                             <input
@@ -186,7 +218,14 @@ const ProviderInfo: React.FC = () => {
                                             htmlFor="last-name"
                                             className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                                         >
-                                            Last name<span className="text-violet-light font-bold" title="Required" aria-label="Required">*</span>
+                                            Last name
+                                            <span
+                                                className="text-violet-light font-bold"
+                                                title="Required"
+                                                aria-label="Required"
+                                            >
+                                                *
+                                            </span>
                                         </label>
                                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                                             <input
@@ -205,7 +244,14 @@ const ProviderInfo: React.FC = () => {
                                             htmlFor="pronouns"
                                             className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                                         >
-                                            Pronouns<span className="text-violet-light font-bold" title="Required" aria-label="Required">*</span>
+                                            Pronouns
+                                            <span
+                                                className="text-violet-light font-bold"
+                                                title="Required"
+                                                aria-label="Required"
+                                            >
+                                                *
+                                            </span>
                                         </label>
                                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                                             <input
@@ -229,20 +275,36 @@ const ProviderInfo: React.FC = () => {
                                         <div className="mt-1 sm:mt-0 sm:col-span-2">
                                             <div className="flex items-center">
                                                 <span className="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                                    <svg
-                                                        className="h-full w-full text-gray-300"
-                                                        fill="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                    </svg>
+                                                    {image && (
+                                                        <img
+                                                            src={image}
+                                                            alt="Profile"
+                                                        />
+                                                    )}
+                                                    {!image && (
+                                                        <svg
+                                                            className="h-full w-full text-gray-300"
+                                                            fill="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                        </svg>
+                                                    )}
                                                 </span>
                                                 <button
                                                     type="button"
                                                     className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
+                                                    onClick={handleClickSelect}
                                                 >
                                                     Change
                                                 </button>
+                                                <input
+                                                    ref={imageInput}
+                                                    style={{ display: 'none' }}
+                                                    type="file"
+                                                    accept=".png,.jpeg,.jpg,"
+                                                    onChange={onImageChange}
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -252,12 +314,12 @@ const ProviderInfo: React.FC = () => {
 
                         <div className="pt-5">
                             <div className="flex justify-end">
-                                <button
+                                {/* <button
                                     type="button"
                                     className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
                                 >
                                     Cancel
-                                </button>
+                                </button> */}
                                 <button
                                     type="submit"
                                     className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet hover:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
