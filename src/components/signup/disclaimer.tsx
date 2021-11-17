@@ -21,7 +21,7 @@ function Disclaimer() {
             <div className="relative px-4 sm:px-6 lg:px-8">
                 <div className="text-lg max-w-prose mx-auto">
                     <h1>
-                        <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
+                        <span className="block text-base text-center text-violet-lightest font-semibold tracking-wide uppercase">
                             Disclaimer
                         </span>
                         <span className="mt-2 block text-3xl text-center leading-8 font-semibold tracking-tight text-gray-900 sm:text-4xl">
@@ -36,7 +36,7 @@ function Disclaimer() {
                         back at a later date to finish.
                     </p>
                 </div>
-                <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+                <div className="mt-6 prose prose-violet prose-lg text-gray-500 mx-auto">
                     <p>
                         Our questionnaire is designed to provide our users with
                         a fully transparent view of the responses that you
@@ -134,7 +134,7 @@ export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
                         type="checkbox"
                         checked={checked}
                         onChange={() => setChecked(prev => !prev)}
-                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300 rounded"
                     />
                 </div>
                 <div className="ml-3 text-sm">
