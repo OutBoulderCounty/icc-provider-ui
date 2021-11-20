@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { HomeIcon, ClipboardIcon } from '@heroicons/react/outline';
 
 import NavBar, { navItem } from './navBar';
 import ProvideEmail from './signup/provideEmail';
@@ -22,7 +20,7 @@ const navigation: navItem[] = [
     // },
 ];
 
-const authorizedList = ['verykenny@gmail.com'];
+const authorizedList: string[] = [];
 
 const Login: React.FC = () => {
     const {
@@ -40,6 +38,7 @@ const Login: React.FC = () => {
         }
     }, [email, setSession]);
 
+    
     if (!email) {
         return (
             <>
@@ -53,6 +52,7 @@ const Login: React.FC = () => {
         <>
             <NavBar items={navigation} loggedIn={false} />
             <SignUpProcess />
+
         </>
     );
 };

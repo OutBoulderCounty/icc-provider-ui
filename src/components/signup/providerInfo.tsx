@@ -1,6 +1,10 @@
 import React from 'react';
+import useSession from '../../context/sessionContext';
 
 const ProviderInfo: React.FC = () => {
+    const {
+        session: { email },
+    } = useSession();
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
 
@@ -19,11 +23,33 @@ const ProviderInfo: React.FC = () => {
         }
     };
 
+    const handleUserCreate = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        (async () => {
+            const res = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    redirect_url: 'http://localhost:3000/localauth',
+                }),
+            });
+            const data = await res.json();
+            localStorage.setItem('email', email);
+            localStorage.setItem('userId', data.user_id);
+        })();
+    };
+
     return (
         <>
             <div className="max-w-7xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto">
-                    <form className="space-y-8 divide-y divide-gray-200">
+                    <form
+                        className="space-y-8 divide-y divide-gray-200"
+                        onSubmit={handleUserCreate}
+                    >
                         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                             <div>
                                 <div>
