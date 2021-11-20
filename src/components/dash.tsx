@@ -140,10 +140,10 @@ const Dashboard: React.FC = () => {
           <NavBar items={navigation} loggedIn={true} />
           <div className="overflow-y-scroll overflow-x-hidden">
             <Routes>
-              <Route path="/" element={<Home />}>
+              <Route path="/localauth" element={<LocalAuth />}>
                 {/* <Home /> */}
               </Route>
-              <Route path="/localauth" element={<LocalAuth />}>
+              <Route path="/" element={<Home />}>
                 {/* <Home /> */}
               </Route>
               {/* <Route path="/forms">

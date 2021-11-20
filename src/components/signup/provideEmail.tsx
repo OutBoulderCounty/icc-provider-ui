@@ -13,11 +13,28 @@ const ProvideEmail: React.FC = () => {
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        setSession((prev) => ({
-            ...prev,
-            email: providedEmail,
-            signUpStep: 2,
-        }));
+        // setSession((prev) => ({
+        //     ...prev,
+        //     email: providedEmail,
+        //     signUpStep: 2,
+        // }));
+
+
+        (async () => {
+          const res = await fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: providedEmail,
+              redirect_url: 'http://localhost:3000/localauth',
+            })
+          })
+          const data = await res.json()
+          localStorage.setItem('email', providedEmail);
+          localStorage.setItem('userId', data.user_id);
+        })();
     };
 
     return (
