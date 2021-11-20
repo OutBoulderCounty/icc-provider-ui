@@ -8,6 +8,7 @@ import Button from "./button"
 import Error from "./error"
 import NavBar, { navItem } from "./navBar"
 import Forms from "./forms"
+import LocalAuth from './localAuth';
 
 const navigation: navItem[] = [
   { name: "Dashboard", path: "/admin", Icon: HomeIcon, Link },
@@ -140,6 +141,9 @@ const Dashboard: React.FC = () => {
           <div className="overflow-y-scroll overflow-x-hidden">
             <Routes>
               <Route path="/" element={<Home />}>
+                {/* <Home /> */}
+              </Route>
+              <Route path="/localauth" element={<LocalAuth />}>
                 {/* <Home /> */}
               </Route>
               {/* <Route path="/forms">
