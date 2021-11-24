@@ -4,12 +4,11 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import useSession from '../../context/sessionContext';
 
 const ProvideEmail: React.FC = () => {
+    const signUp = JSON.parse(localStorage.getItem('signUp') || '{}');
     const {
-        session: { email },
         setSession,
     } = useSession();
-    const [providedEmail, setProvidedEmail] = React.useState<string>(email);
-    const signUp = JSON.parse(localStorage.getItem('signUp') || '{}');
+    const [providedEmail, setProvidedEmail] = React.useState<string>(signUp.email || '');
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -29,7 +28,6 @@ const ProvideEmail: React.FC = () => {
                 ...signUp,
                 email: providedEmail,
                 signUpStep: 2,
-                disclaimer: false,
             })
         );
     };
