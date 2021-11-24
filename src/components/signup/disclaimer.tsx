@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useSession from '../../context/sessionContext';
 import Button from '../button';
 
@@ -21,7 +22,7 @@ function Disclaimer() {
                 ></div>
             </div>
             <div className="relative px-4 sm:px-6 lg:px-8">
-                <div className="text-lg max-w-prose mx-auto">
+                <div className="text-base max-w-prose mx-auto">
                     <h1>
                         <span className="block text-base text-center text-violet-lightest font-semibold tracking-wide uppercase">
                             Disclaimer
@@ -30,7 +31,7 @@ function Disclaimer() {
                             Understanding this resource
                         </span>
                     </h1>
-                    <p className="mt-8 text-xl text-gray-500 leading-8">
+                    <p className="mt-8 text-base text-gray-500 leading-8">
                         Before you begin your submission to Inclusive Care
                         Colorado, here is some information that will help set
                         you up for success. Your profile will save any progress
@@ -38,8 +39,8 @@ function Disclaimer() {
                         back at a later date to finish.
                     </p>
                 </div>
-                <div className="mt-6 prose prose-violet prose-lg text-gray-500 mx-auto">
-                    <p>
+                <div className="mt-6 text-base prose prose-violet prose-lg text-gray-500 mx-auto">
+                    <p className='text-base'>
                         Our questionnaire is designed to provide our users with
                         a fully transparent view of the responses that you
                         input. <strong>Please be aware</strong> that all your
@@ -94,7 +95,7 @@ function Disclaimer() {
                     </ul>
 
                     <p>
-                        You can follow this link [link to glossary] to find a
+                        You can follow this <Link to='#'>link</Link> to find a
                         glossary of terms that we use throughout our
                         questionnaire.
                     </p>
