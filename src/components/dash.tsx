@@ -2,12 +2,11 @@ import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
 import { HomeIcon, XIcon, ClipboardIcon } from "@heroicons/react/outline"
 import { Routes, Route, Link } from "react-router-dom"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient } from "react-query"
 
 import Button from "./button"
 import Error from "./error"
 import NavBar, { navItem } from "./navBar"
-import Forms from "./forms"
 import LocalAuth from './localAuth';
 
 const navigation: navItem[] = [
@@ -38,8 +37,6 @@ const Home: React.FC = () => {
     </main>
   )
 }
-
-const queryClient = new QueryClient()
 
 const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)

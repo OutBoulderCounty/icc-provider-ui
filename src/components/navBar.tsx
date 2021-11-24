@@ -45,13 +45,9 @@ const NavItem: React.FC<navItem> = (item) => {
 
 const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
     const logoutFn = () => {
-        console.log('loggin out');
-        // TODO: logout
-        // logout({
-        //   returnTo: window.location.origin,
-        // })
-        return null;
+        localStorage.removeItem('session_token');
     };
+
     return (
         <Disclosure as="nav" className="bg-white shadow max-h-max">
             {({ open }) => (

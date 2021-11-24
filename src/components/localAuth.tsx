@@ -19,6 +19,7 @@ function LocalAuth() {
           })
           const data = await res.json()
           await localStorage.setItem('session_token', data.session_token);
+          window.location.href = '/';
       })();
     }
   })
