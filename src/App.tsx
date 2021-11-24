@@ -12,7 +12,8 @@ const App: React.FC = () => {
     useEffect(() => {
       if (!authenticated) {
         const userId = localStorage.getItem('userId');
-        if (userId) {
+        const sessionToken = localStorage.getItem('sessionToken');
+        if (userId || sessionToken) {
           setSession(prev => ({ ...prev, authenticated: true }));
         }
       }

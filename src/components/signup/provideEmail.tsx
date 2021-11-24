@@ -9,14 +9,29 @@ const ProvideEmail: React.FC = () => {
         setSession,
     } = useSession();
     const [providedEmail, setProvidedEmail] = React.useState<string>(email);
+    const signUp = JSON.parse(localStorage.getItem('signUp') || '{}');
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
+
+        //TODO: validate email
+        // If valid, send post request to server
+
+        // If not valid, continue signup process
         setSession((prev) => ({
             ...prev,
             email: providedEmail,
             signUpStep: 2,
         }));
+        localStorage.setItem(
+            'signUp',
+            JSON.stringify({
+                ...signUp,
+                email: providedEmail,
+                signUpStep: 2,
+                disclaimer: false,
+            })
+        );
     };
 
     return (

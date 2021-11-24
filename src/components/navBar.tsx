@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
+import useSession from '../context/sessionContext';
 
 type IconProps = {
     className?: string;
@@ -44,8 +45,11 @@ const NavItem: React.FC<navItem> = (item) => {
 };
 
 const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
+    const { setSession } = useSession();
+
     const logoutFn = () => {
-        localStorage.removeItem('session_token');
+        localStorage.removeItem('sessionToken');
+        setSession(prev => ({ ...prev, authenticated: false }));
     };
 
     return (

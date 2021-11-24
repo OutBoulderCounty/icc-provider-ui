@@ -5,9 +5,11 @@ import Button from '../button';
 function Disclaimer() {
   const { session: { disclaimer }, setSession } = useSession()
   const [checked, setChecked] = React.useState<boolean>(disclaimer);
+  const signUp = JSON.parse(localStorage.getItem('signUp') || '{}');
 
   const handleSubmitDisclaimer = () => {
     setSession(prev => ({...prev, disclaimer: true, signUpStep: 3 }))
+    localStorage.setItem('signUp', JSON.stringify({ ...signUp, disclaimer: true, signUpStep: 3 }))
   };
 
     return (

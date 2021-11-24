@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useSession from '../../context/sessionContext';
 
 const ProviderInfo: React.FC = () => {
@@ -7,6 +7,24 @@ const ProviderInfo: React.FC = () => {
     } = useSession();
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
+    const signUpInfo = JSON.parse(localStorage.getItem('signUpInfo') || '{}');
+    const [providerInfo, setProviderInfo] = React.useState({
+      practiceName: signUpInfo.practiceName || '',
+      specialty: signUpInfo.specialty || '',
+      phoneNumber: signUpInfo.phoneNumber || '',
+      street: signUpInfo.street || '',
+      city: signUpInfo.city || '',
+      state: signUpInfo.state || '',
+      zip: signUpInfo.v || '',
+      firstName: signUpInfo.firstName || '',
+      lastName: signUpInfo.lastName || '',
+      pronouns: signUpInfo.pronouns || '',
+      photo: signUpInfo.photo || '',
+    });
+
+    useEffect(() => {
+      localStorage.setItem('signUpInfo', JSON.stringify({...providerInfo }));
+    }, [providerInfo]);
 
     const handleClickSelect = () => {
         if (imageInput.current) {
@@ -37,8 +55,11 @@ const ProviderInfo: React.FC = () => {
                 }),
             });
             const data = await res.json();
-            localStorage.setItem('email', email);
             localStorage.setItem('userId', data.user_id);
+            localStorage.removeItem('signUpInfo')
+            localStorage.removeItem('signUp')
+
+            // TODO: redirect to the 'check your email' page
         })();
     };
 
@@ -78,6 +99,8 @@ const ProviderInfo: React.FC = () => {
                                                     id="practiceName"
                                                     autoComplete="practiceName"
                                                     className="flex-1 block w-full focus:ring-violet-light focus:border-violet-light min-w-0 rounded-md sm:text-sm border-gray-300"
+                                                    value={providerInfo.practiceName}
+                                                    onChange={(e) => setProviderInfo({ ...providerInfo, practiceName: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -98,6 +121,8 @@ const ProviderInfo: React.FC = () => {
                                                     id="specialty"
                                                     autoComplete="specialty"
                                                     className="flex-1 block w-full focus:ring-violet-light focus:border-violet-light min-w-0 rounded-md sm:text-sm border-gray-300"
+                                                    value={providerInfo.specialty}
+                                                    onChange={(e) => setProviderInfo({ ...providerInfo, specialty: e.target.value })}
                                                 />
                                             </div>
                                         </div>
@@ -125,6 +150,8 @@ const ProviderInfo: React.FC = () => {
                                                 autoComplete="phone"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
+                                                value={providerInfo.phoneNumber}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, phoneNumber: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -143,6 +170,8 @@ const ProviderInfo: React.FC = () => {
                                                 id="street-address"
                                                 autoComplete="street-address"
                                                 className="block max-w-lg w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:text-sm border-gray-300 rounded-md"
+                                                value={providerInfo.street}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, street: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -161,6 +190,8 @@ const ProviderInfo: React.FC = () => {
                                                 id="city"
                                                 autoComplete="address-level2"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                                                value={providerInfo.city}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, city: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -179,6 +210,8 @@ const ProviderInfo: React.FC = () => {
                                                 id="state"
                                                 autoComplete="address-level1"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                                                value={providerInfo.state}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, state: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -197,6 +230,9 @@ const ProviderInfo: React.FC = () => {
                                                 id="postal-code"
                                                 autoComplete="postal-code"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                                                value={providerInfo.zip}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, zip: e.target.value })}
+
                                             />
                                         </div>
                                     </div>
@@ -235,6 +271,8 @@ const ProviderInfo: React.FC = () => {
                                                 autoComplete="given-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
+                                                value={providerInfo.firstName}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, firstName: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -261,6 +299,8 @@ const ProviderInfo: React.FC = () => {
                                                 autoComplete="family-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
+                                                value={providerInfo.lastName}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, lastName: e.target.value })}
                                             />
                                         </div>
                                     </div>
@@ -287,6 +327,9 @@ const ProviderInfo: React.FC = () => {
                                                 autoComplete="family-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
+                                                value={providerInfo.pronouns}
+                                                onChange={(e) => setProviderInfo({ ...providerInfo, pronouns: e.target.value })}
+
                                             />
                                         </div>
                                     </div>
