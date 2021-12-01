@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 
+import { Routes, Route, Link } from "react-router-dom"
+
 import NavBar, { navItem } from './navBar';
 import ProvideEmail from './signup/provideEmail';
 import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
+import LocalAuth from './localAuth';
 
 const navigation: navItem[] = [
     // {
@@ -38,12 +41,21 @@ const Login: React.FC = () => {
         }
     }, [email, setSession]);
 
-    
+
     if (!email) {
         return (
             <>
                 <NavBar items={navigation} loggedIn={false} />
+
                 <ProvideEmail />
+
+
+
+                <div className="overflow-y-scroll overflow-x-hidden">
+            <Routes>
+              <Route path="/localauth" element={<LocalAuth />}></Route>
+            </Routes>
+          </div>
             </>
         );
     }
@@ -52,7 +64,6 @@ const Login: React.FC = () => {
         <>
             <NavBar items={navigation} loggedIn={false} />
             <SignUpProcess />
-
         </>
     );
 };

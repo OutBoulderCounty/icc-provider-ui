@@ -2,18 +2,18 @@ import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
 import { HomeIcon, XIcon, ClipboardIcon } from "@heroicons/react/outline"
 import { Routes, Route, Link } from "react-router-dom"
-import { QueryClient } from "react-query"
 
 import Button from "./button"
 import Error from "./error"
 import NavBar, { navItem } from "./navBar"
-import LocalAuth from './localAuth';
+// import LocalAuth from './localAuth';
+import Forms from './forms';
 
 const navigation: navItem[] = [
-  { name: "Dashboard", path: "/admin", Icon: HomeIcon, Link },
+  { name: "Dashboard", path: "/", Icon: HomeIcon, Link },
   {
     name: "Forms",
-    path: "/admin/forms",
+    path: "/forms",
     Icon: ClipboardIcon,
     Link,
   },
@@ -137,17 +137,12 @@ const Dashboard: React.FC = () => {
           <NavBar items={navigation} loggedIn={true} />
           <div className="overflow-y-scroll overflow-x-hidden">
             <Routes>
-              <Route path="/localauth" element={<LocalAuth />}>
-                {/* <Home /> */}
-              </Route>
-              <Route path="/" element={<Home />}>
-                {/* <Home /> */}
-              </Route>
-              {/* <Route path="/forms">
-                <QueryClientProvider client={queryClient}>
-                  <Forms />
-                </QueryClientProvider>
+              {/* <Route path="/localauth" element={<LocalAuth />}>
               </Route> */}
+              <Route path="/" element={<Home />}>
+              </Route>
+              <Route path="/forms" element={<Forms />}>
+              </Route>
             </Routes>
           </div>
         </div>
