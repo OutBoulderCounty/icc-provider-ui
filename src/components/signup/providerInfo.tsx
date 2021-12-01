@@ -61,7 +61,7 @@ const ProviderInfo: React.FC = () => {
             localStorage.removeItem('signUpInfo')
             localStorage.removeItem('signUp')
 
-            // TODO: redirect to the 'check your email' page
+            // TODO: redirect to the 'check your email' modal
             setModalOpen(true);
         })();
     };
@@ -403,7 +403,7 @@ const ProviderInfo: React.FC = () => {
                     </form>
                 </div>
             </div>
-            <CheckEmailModal setModalOpen={setModalOpen} modalOpen={modalOpen} />
+            <CheckEmailModal setModalOpen={setModalOpen} modalOpen={modalOpen} modalType={"create"} />
         </>
     );
 };
