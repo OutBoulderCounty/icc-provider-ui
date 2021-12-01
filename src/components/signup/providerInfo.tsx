@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useSession from '../../context/sessionContext';
+import CheckEmailModal from './checkEmailModal';
 
 const ProviderInfo: React.FC = () => {
     const {
@@ -21,6 +22,7 @@ const ProviderInfo: React.FC = () => {
       pronouns: signUpInfo.pronouns || '',
       photo: signUpInfo.photo || '',
     });
+    const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
       localStorage.setItem('signUpInfo', JSON.stringify({...providerInfo }));
@@ -60,6 +62,7 @@ const ProviderInfo: React.FC = () => {
             localStorage.removeItem('signUp')
 
             // TODO: redirect to the 'check your email' page
+            setModalOpen(true);
         })();
     };
 
@@ -400,6 +403,7 @@ const ProviderInfo: React.FC = () => {
                     </form>
                 </div>
             </div>
+            <CheckEmailModal setModalOpen={setModalOpen} modalOpen={modalOpen} />
         </>
     );
 };
