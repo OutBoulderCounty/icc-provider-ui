@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Loader from './loader';
-import ErrorComponent from './error';
+// import ErrorComponent from './error';
 
 type ActiveProps = {
     isActive: boolean;
@@ -23,15 +23,15 @@ const Active: React.FC<ActiveProps> = ({ isActive, className, children }) => {
 };
 
 type Form = {
-    _id: string;
+    id: string;
     name: string;
     required: boolean;
     live: boolean;
 };
 
-type Error = {
-    error: string;
-};
+// type Error = {
+//     error: string;
+// };
 
 const Forms: React.FC = () => {
     const sessionToken = localStorage.getItem('sessionToken');
@@ -51,7 +51,7 @@ const Forms: React.FC = () => {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', sessionToken ? sessionToken : '');
-      
+
         (async () => {
             setIsLoading(true);
             const res = await fetch('http://localhost:8080/forms', {
@@ -61,6 +61,7 @@ const Forms: React.FC = () => {
             const data = await res.json();
             setForms(data.forms);
             setIsLoading(false);
+            console.log(data.forms);
         })();
     }
 
@@ -101,7 +102,7 @@ const Forms: React.FC = () => {
                             <tbody className="overflow-y-scroll">
                                 {forms?.map((form, formIdx) => (
                                     <tr
-                                        key={form._id}
+                                        key={form.id}
                                         className={
                                             formIdx % 2 === 0
                                                 ? 'bg-white'
@@ -125,7 +126,7 @@ const Forms: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a
-                                                href="#"
+                                                href="/"
                                                 className="text-violet hover:text-violet-darkest"
                                             >
                                                 Edit
