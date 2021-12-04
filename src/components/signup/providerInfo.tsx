@@ -61,6 +61,7 @@ const ProviderInfo: React.FC = () => {
             );
             try {
               const data = await res.json();
+              console.log(data);
               if (data.error) {
                   alert(data.error);
                   return;
