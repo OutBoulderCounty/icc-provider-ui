@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 
 const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
-  const [userIsAdmin, setUserIsAdmin] = React.useState(true)
+  const [userIsAdmin] = React.useState(true)
 
   if (userIsAdmin) {
     return (
@@ -104,8 +104,8 @@ const Dashboard: React.FC = () => {
                     />
                   </div>
                 </div>
-                <div className="flex-shrink-0 flex bg-gray-700 p-4">
-                  <a href="#" className="flex-shrink-0 group block">
+                {/* <div className="flex-shrink-0 flex bg-gray-700 p-4">
+                  <a href="/" className="flex-shrink-0 group block">
                     <div className="flex items-center">
                       <div>
                         <img
@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> */}
               </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14">
