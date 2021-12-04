@@ -50,7 +50,7 @@ const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
     const logoutFn = () => {
         localStorage.removeItem('sessionToken');
         window.location.href = '/';
-        setSession(prev => ({ ...prev, authenticated: false }));
+        setSession((prev) => ({ ...prev, authenticated: false }));
     };
 
     return (
@@ -78,6 +78,16 @@ const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
                                             />
                                         )}
                                     </Disclosure.Button>
+                                </div>
+                                <div className="flex-shrink-0 flex items-center">
+                                  {/* TODO: update link with url for icc-ui page */}
+                                  <a href="#">
+                                    <img
+                                        className="hidden md:block h-8 w-auto"
+                                        src="/color-horizontal1x.png"
+                                        alt="Workflow"
+                                    />
+                                  </a>
                                 </div>
                                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                                     {items.map((item) => (
