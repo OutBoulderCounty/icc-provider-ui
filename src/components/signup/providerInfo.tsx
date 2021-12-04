@@ -46,20 +46,27 @@ const ProviderInfo: React.FC = () => {
     const handleUserCreate = (e: React.SyntheticEvent) => {
         e.preventDefault();
         (async () => {
-            try {
-                await fetch(process.env.REACT_APP_API_ENDPOINT + '/login', {
+            const res = await fetch(
+                process.env.REACT_APP_API_ENDPOINT + '/login',
+                {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         email: email,
-                        redirect_url: 'http://localhost:3000/localauth',
+                        redirect_url: window.location.href + 'localauth',
                     }),
-                });
-                setModalOpen(true);
-            } catch (e) {
-                console.log(e);
+                }
+            );
+            try {
+              const data = await res.json();
+              if (data.error) {
+                  alert(data.error);
+                  return;
+              }
+            } catch {
+              setModalOpen(true);
             }
         })();
     };
@@ -171,8 +178,7 @@ const ProviderInfo: React.FC = () => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        phone:
-                                                            e.target.value,
+                                                        phone: e.target.value,
                                                     })
                                                 }
                                             />
