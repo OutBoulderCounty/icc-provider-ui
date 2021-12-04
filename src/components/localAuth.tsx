@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import Loader from "./loader";
 
 function LocalAuth() {
   useEffect(() => {
@@ -27,6 +28,7 @@ function LocalAuth() {
 
   return (
     <div>
+      <Loader></Loader>
     </div>
   )
 }

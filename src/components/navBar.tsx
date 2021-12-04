@@ -49,6 +49,7 @@ const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
 
     const logoutFn = () => {
         localStorage.removeItem('sessionToken');
+        window.location.href = '/';
         setSession(prev => ({ ...prev, authenticated: false }));
     };
 

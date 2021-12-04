@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route, Link } from 'react-router-dom';
 
 import NavBar, { navItem } from './navBar';
 import ProvideEmail from './signup/provideEmail';
@@ -41,21 +41,19 @@ const Login: React.FC = () => {
         }
     }, [email, setSession]);
 
-
     if (!email) {
         return (
             <>
                 <NavBar items={navigation} loggedIn={false} />
-
-                <ProvideEmail />
-
-
-
                 <div className="overflow-y-scroll overflow-x-hidden">
-            <Routes>
-              <Route path="/localauth" element={<LocalAuth />}></Route>
-            </Routes>
-          </div>
+                    <Routes>
+                        <Route path="/" element={<ProvideEmail />} />
+                        <Route
+                            path="/localauth"
+                            element={<LocalAuth />}
+                        ></Route>
+                    </Routes>
+                </div>
             </>
         );
     }
