@@ -95,7 +95,7 @@ function Disclaimer() {
                     </ul>
 
                     <p>
-                        You can follow this <Link to='#'>link</Link> to find a
+                        You can follow this <Link to='https://develop.inclusivecareco.org/glossary'>link</Link> to find a
                         glossary of terms that we use throughout our
                         questionnaire.
                     </p>
