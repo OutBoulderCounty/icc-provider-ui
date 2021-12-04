@@ -61,7 +61,6 @@ const Forms: React.FC = () => {
             const data = await res.json();
             setForms(data.forms);
             setIsLoading(false);
-            console.log(data.forms);
         })();
     }
 
