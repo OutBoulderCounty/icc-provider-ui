@@ -12,7 +12,7 @@ const ProviderInfo: React.FC = () => {
     const [providerInfo, setProviderInfo] = React.useState({
         practiceName: signUpInfo.practiceName || '',
         specialty: signUpInfo.specialty || '',
-        phoneNumber: signUpInfo.phoneNumber || '',
+        phone: signUpInfo.phone || '',
         street: signUpInfo.street || '',
         city: signUpInfo.city || '',
         state: signUpInfo.state || '',
@@ -47,7 +47,7 @@ const ProviderInfo: React.FC = () => {
         e.preventDefault();
         (async () => {
             try {
-                const res = await fetch('http://localhost:8080/login', {
+                await fetch('http://localhost:8080/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -57,13 +57,6 @@ const ProviderInfo: React.FC = () => {
                         redirect_url: 'http://localhost:3000/localauth',
                     }),
                 });
-                // const data = await res.json();
-                // console.log(data);
-                // await localStorage.setItem('userId', data.user_id);
-                await localStorage.removeItem('signUpInfo');
-                await localStorage.removeItem('signUp');
-
-                // TODO: redirect to the 'check your email' modal
                 setModalOpen(true);
             } catch (e) {
                 console.log(e);
@@ -174,11 +167,11 @@ const ProviderInfo: React.FC = () => {
                                                 autoComplete="phone"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
-                                                value={providerInfo.phoneNumber}
+                                                value={providerInfo.phone}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        phoneNumber:
+                                                        phone:
                                                             e.target.value,
                                                     })
                                                 }
