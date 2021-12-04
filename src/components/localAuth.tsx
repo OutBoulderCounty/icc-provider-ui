@@ -6,7 +6,7 @@ function LocalAuth() {
         const url = window.location.search;
         const urlSearch = new URLSearchParams(url);
         const token = urlSearch.get('token');
-        const signUpInfo = JSON.parse(localStorage.getItem('signUpInfo') || '{}');
+        const signUpInfo = JSON.parse(localStorage.getItem('signUpInfo') || '{ "noData": true }');
         const userInfo = JSON.parse(localStorage.getItem('signUp') || '{}');
         const userUpdateInfo = {...signUpInfo, ...userInfo}
 
@@ -27,22 +27,25 @@ function LocalAuth() {
                 await localStorage.removeItem('userId');
 
 
-                const headers = new Headers();
-                headers.append('Content-Type', 'application/json');
-                headers.append('Authorization', sessionToken ? sessionToken : '');
+                if (!signUpInfo.noData) {
+                  userUpdateInfo.address = `${signUpInfo.street}, ${signUpInfo.city}, ${signUpInfo.state} ${signUpInfo.zip}`;
+                  const headers = new Headers();
+                  headers.append('Content-Type', 'application/json');
+                  headers.append('Authorization', sessionToken ? sessionToken : '');
 
-                const updateResponse = await fetch('http://localhost:8080/user', {
-                  method: 'PUT',
-                  headers: headers,
-                  body: JSON.stringify(userUpdateInfo),
-                });
-                const updateData = await updateResponse.json();
-                console.log(updateData);
-                await localStorage.setItem('responseInfo', JSON.stringify({...updateData.user}));
+                  const updateResponse = await fetch('http://localhost:8080/user', {
+                    method: 'PUT',
+                    headers: headers,
+                    body: JSON.stringify(userUpdateInfo),
+                  });
+                  const updateData = await updateResponse.json();
+                  console.log(updateData);
+                  await localStorage.setItem('responseInfo', JSON.stringify({...updateData.user}));
 
-                await localStorage.removeItem('signUpInfo');
-                await localStorage.removeItem('signUp');
-                window.location.href = '/';
+                  await localStorage.removeItem('signUpInfo');
+                  await localStorage.removeItem('signUp');
+                  window.location.href = '/';
+                }
             })();
         }
     });
