@@ -44,6 +44,7 @@ const ProviderInfo: React.FC = () => {
     };
 
     const handleUserCreate = (e: React.SyntheticEvent) => {
+      // TODO: LOADING INDICATOR
         e.preventDefault();
         (async () => {
             const res = await fetch(
