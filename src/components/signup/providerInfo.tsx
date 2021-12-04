@@ -47,7 +47,7 @@ const ProviderInfo: React.FC = () => {
         e.preventDefault();
         (async () => {
             try {
-                await fetch('http://localhost:8080/login', {
+                await fetch(process.env.REACT_APP_API_ENDPOINT + '/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

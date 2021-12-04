@@ -15,7 +15,7 @@ function LocalAuth() {
         if (token) {
             (async () => {
                 const authResponse = await fetch(
-                    'http://localhost:8080/authenticate',
+                  process.env.REACT_APP_API_ENDPOINT + '/authenticate',
                     {
                         method: 'POST',
                         headers: {
@@ -49,7 +49,7 @@ function LocalAuth() {
                     );
 
                     const updateResponse = await fetch(
-                        'http://localhost:8080/user',
+                      process.env.REACT_APP_API_ENDPOINT + '/user',
                         {
                             method: 'PUT',
                             headers: headers,

@@ -54,7 +54,7 @@ const Forms: React.FC = () => {
 
         (async () => {
             setIsLoading(true);
-            const res = await fetch('http://localhost:8080/forms', {
+            const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/forms', {
                 method: 'GET',
                 headers: headers,
             });
