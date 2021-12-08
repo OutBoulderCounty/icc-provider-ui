@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 
-import { Routes, Route } from 'react-router-dom';
-// import { HomeIcon } from '@heroicons/react/outline';
+import { Routes, Route, Link } from 'react-router-dom';
+import { LoginIcon } from '@heroicons/react/outline';
+
 
 import NavBar, { navItem } from './navBar';
 import ProvideEmail from './signup/provideEmail';
@@ -11,12 +12,12 @@ import LocalAuth from './localAuth';
 import FAQ from './faq';
 
 const navigation: navItem[] = [
-    // {
-    //     name: 'ICC Home',
-    //     path: '/',
-    //     Icon: HomeIcon,
-    //     Link,
-    // },
+    {
+        name: 'Login / Signup',
+        path: '/',
+        Icon: LoginIcon,
+        Link,
+    },
     // {
     //     name: 'Forms',
     //     path: '/admin/forms',

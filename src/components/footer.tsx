@@ -14,6 +14,7 @@ const navigation = {
     // { name: 'Accessibility', href: '#' },
     // { name: 'Partners', href: '#' },
     { name: 'FAQ', href: '/faq' },
+    { name: 'Glossary', href: 'https://develop.inclusivecareco.org/glossary' },
   ],
   social: [
     {
