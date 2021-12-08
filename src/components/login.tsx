@@ -47,7 +47,6 @@ const Login: React.FC = () => {
     // if (!email) {
         return (
             <>
-                <NavBar items={navigation} loggedIn={false} />
                 <div className="overflow-y-scroll overflow-x-hidden">
                     <Routes>
                         <Route path="/" element={email ? <SignUpProcess /> : <ProvideEmail />} />

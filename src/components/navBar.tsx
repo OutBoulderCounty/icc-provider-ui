@@ -1,7 +1,14 @@
 import React from 'react';
 
 import { Disclosure } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import {
+    HomeIcon,
+    MenuIcon,
+    ClipboardIcon,
+    LoginIcon,
+    XIcon,
+} from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
@@ -19,10 +26,24 @@ type navItem = {
     Link: React.FC<LinkProps>;
 };
 
-type navOptions = {
-    items: navItem[];
-    loggedIn: boolean;
-};
+const navigationLoggedIn: navItem[] = [
+    { name: 'Dashboard', path: '/', Icon: HomeIcon, Link },
+    {
+        name: 'Forms',
+        path: '/forms',
+        Icon: ClipboardIcon,
+        Link,
+    },
+];
+
+const navigationLoggedOut: navItem[] = [
+    {
+        name: 'Login / Signup',
+        path: '/',
+        Icon: LoginIcon,
+        Link,
+    },
+];
 
 const NavItem: React.FC<navItem> = (item) => {
     const location = useLocation();
@@ -44,14 +65,22 @@ const NavItem: React.FC<navItem> = (item) => {
     );
 };
 
-const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
-    const { setSession } = useSession();
+const NavBar: React.FC = () => {
+    const {
+        session: { authenticated },
+        setSession,
+    } = useSession();
+
 
     const logoutFn = () => {
         localStorage.removeItem('sessionToken');
         window.location.href = '/';
         setSession((prev) => ({ ...prev, authenticated: false }));
     };
+
+    const loggedIn = authenticated;
+    const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
+
 
     return (
         <Disclosure as="nav" className="bg-white shadow max-h-max">
@@ -80,14 +109,14 @@ const NavBar: React.FC<navOptions> = ({ items, loggedIn }) => {
                                     </Disclosure.Button>
                                 </div>
                                 <div className="flex-shrink-0 flex items-center">
-                                  {/* TODO: update link with url for icc-ui page */}
-                                  <a href="https://develop.inclusivecareco.org">
-                                    <img
-                                        className="hidden md:block h-8 w-auto"
-                                        src="/color-horizontal1x.png"
-                                        alt="Workflow"
-                                    />
-                                  </a>
+                                    {/* TODO: update link with url for icc-ui page */}
+                                    <a href="https://develop.inclusivecareco.org">
+                                        <img
+                                            className="hidden md:block h-8 w-auto"
+                                            src="/color-horizontal1x.png"
+                                            alt="Workflow"
+                                        />
+                                    </a>
                                 </div>
                                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                                     {items.map((item) => (

@@ -3,6 +3,7 @@ import Dashboard from './components/dash';
 import Login from './components/login';
 import useSession from './context/sessionContext';
 import Footer from './components/footer';
+import NavBar from './components/navBar';
 
 const App: React.FC = () => {
     const {
@@ -11,19 +12,21 @@ const App: React.FC = () => {
     } = useSession();
 
     useEffect(() => {
-      if (!authenticated) {
-        const sessionToken = localStorage.getItem('sessionToken');
-        if (sessionToken) {
-          setSession(prev => ({ ...prev, authenticated: true }));
+        if (!authenticated) {
+            const sessionToken = localStorage.getItem('sessionToken');
+            if (sessionToken) {
+                setSession((prev) => ({ ...prev, authenticated: true }));
+            }
         }
-      }
-    })
+    });
 
     return (
-    <>
-    {authenticated ? <Dashboard /> : <Login />}
-    <Footer />
-    </>);
-}
+        <>
+            <NavBar />
+            {authenticated ? <Dashboard /> : <Login />}
+            <Footer />
+        </>
+    );
+};
 
 export default App;
