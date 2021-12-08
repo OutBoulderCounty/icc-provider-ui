@@ -38,8 +38,6 @@ const Forms: React.FC = () => {
     const [forms, setForms] = React.useState<Form[]>([]);
     const [isLoading, setIsLoading] = React.useState(false);
 
-
-
     if (isLoading) {
         return <Loader />;
     }
@@ -48,18 +46,26 @@ const Forms: React.FC = () => {
     // }
 
     if (!forms?.length) {
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization', sessionToken ? sessionToken : '');
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', sessionToken ? sessionToken : '');
 
         (async () => {
             setIsLoading(true);
-            const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/forms', {
-                method: 'GET',
-                headers: headers,
-            });
-            const data = await res.json();
-            setForms(data.forms);
+            try {
+                const res = await fetch(
+                    process.env.REACT_APP_API_ENDPOINT + '/forms',
+                    {
+                        method: 'GET',
+                        headers: headers,
+                    }
+                );
+                const data = await res.json();
+                setForms(data.forms);
+            } catch (e) {
+                setForms([{ id: '', name: '', required: false, live: false }]);
+                alert(e);
+            }
             setIsLoading(false);
         })();
     }
