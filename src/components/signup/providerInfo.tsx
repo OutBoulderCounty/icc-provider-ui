@@ -44,31 +44,35 @@ const ProviderInfo: React.FC = () => {
     };
 
     const handleUserCreate = (e: React.SyntheticEvent) => {
-      // TODO: LOADING INDICATOR
+        // TODO: LOADING INDICATOR
         e.preventDefault();
         (async () => {
-            const res = await fetch(
-                process.env.REACT_APP_API_ENDPOINT + '/login',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        redirect_url: window.location.href + 'localauth',
-                    }),
-                }
-            );
             try {
-              const data = await res.json();
-              console.log(data);
-              if (data.error) {
-                  alert(data.error);
-                  return;
-              }
-            } catch {
-              setModalOpen(true);
+                const res = await fetch(
+                    process.env.REACT_APP_API_ENDPOINT + '/login',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            redirect_url: window.location.href + 'localauth',
+                        }),
+                    }
+                );
+                try {
+                    const data = await res.json();
+                    console.log(data);
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+                } catch {
+                    setModalOpen(true);
+                }
+            } catch (e) {
+                alert(e);
             }
         })();
     };
