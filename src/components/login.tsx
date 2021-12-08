@@ -8,6 +8,7 @@ import ProvideEmail from './signup/provideEmail';
 import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
 import LocalAuth from './localAuth';
+import FAQ from './faq';
 
 const navigation: navItem[] = [
     // {
@@ -49,6 +50,7 @@ const Login: React.FC = () => {
                 <div className="overflow-y-scroll overflow-x-hidden">
                     <Routes>
                         <Route path="/" element={email ? <SignUpProcess /> : <ProvideEmail />} />
+                        <Route path="/faq" element={<FAQ />} />
                         <Route
                             path="/localauth"
                             element={<LocalAuth />}
