@@ -42,13 +42,13 @@ const Login: React.FC = () => {
         }
     }, [email, setSession]);
 
-    if (!email) {
+    // if (!email) {
         return (
             <>
                 <NavBar items={navigation} loggedIn={false} />
                 <div className="overflow-y-scroll overflow-x-hidden">
                     <Routes>
-                        <Route path="/" element={<ProvideEmail />} />
+                        <Route path="/" element={email ? <SignUpProcess /> : <ProvideEmail />} />
                         <Route
                             path="/localauth"
                             element={<LocalAuth />}
@@ -57,14 +57,14 @@ const Login: React.FC = () => {
                 </div>
             </>
         );
-    }
+    // }
 
-    return (
-        <>
-            <NavBar items={navigation} loggedIn={false} />
-            <SignUpProcess />
-        </>
-    );
+    // return (
+    //     <>
+    //         <NavBar items={navigation} loggedIn={false} />
+    //         <SignUpProcess />
+    //     </>
+    // );
 };
 
 export default Login;
