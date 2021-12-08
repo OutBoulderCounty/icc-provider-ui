@@ -23,7 +23,7 @@ const StepTracker: React.FC = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
             <div className="max-w-3xl mx-auto">
                 <nav aria-label="Progress">
                     <ol className="space-y-4 md:flex md:space-y-0 md:space-x-8">

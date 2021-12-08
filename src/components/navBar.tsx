@@ -114,7 +114,7 @@ const NavBar: React.FC = () => {
                                         <img
                                             className="hidden md:block h-8 w-auto"
                                             src="/color-horizontal1x.png"
-                                            alt="Workflow"
+                                            alt="Home Icon"
                                         />
                                     </a>
                                 </div>

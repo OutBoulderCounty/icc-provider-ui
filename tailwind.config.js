@@ -17,6 +17,8 @@ module.exports = {
       200: "200px",
       300: "300px",
       275: "275px",
+      "screen": "100vh",
+      "full": "100%",
     },
     backgroundSize: {
       "10%": "10%",

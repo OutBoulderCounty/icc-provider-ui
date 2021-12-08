@@ -1,30 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { Routes, Route, Link } from 'react-router-dom';
-import { LoginIcon } from '@heroicons/react/outline';
+import { Routes, Route } from 'react-router-dom';
 
-
-import NavBar, { navItem } from './navBar';
 import ProvideEmail from './signup/provideEmail';
 import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
 import LocalAuth from './localAuth';
 import FAQ from './faq';
-
-const navigation: navItem[] = [
-    {
-        name: 'Login / Signup',
-        path: '/',
-        Icon: LoginIcon,
-        Link,
-    },
-    // {
-    //     name: 'Forms',
-    //     path: '/admin/forms',
-    //     Icon: ClipboardIcon,
-    //     Link,
-    // },
-];
 
 const authorizedList: string[] = [];
 
@@ -44,29 +26,20 @@ const Login: React.FC = () => {
         }
     }, [email, setSession]);
 
-    // if (!email) {
-        return (
-            <>
-                <div className="overflow-y-scroll overflow-x-hidden">
-                    <Routes>
-                        <Route path="/" element={email ? <SignUpProcess /> : <ProvideEmail />} />
-                        <Route path="/faq" element={<FAQ />} />
-                        <Route
-                            path="/localauth"
-                            element={<LocalAuth />}
-                        ></Route>
-                    </Routes>
-                </div>
-            </>
-        );
-    // }
-
-    // return (
-    //     <>
-    //         <NavBar items={navigation} loggedIn={false} />
-    //         <SignUpProcess />
-    //     </>
-    // );
+    return (
+        <>
+            <div className="overflow-y-scroll overflow-x-hidden flex-grow">
+                <Routes>
+                    <Route
+                        path="/"
+                        element={email ? <SignUpProcess /> : <ProvideEmail />}
+                    />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/localauth" element={<LocalAuth />}></Route>
+                </Routes>
+            </div>
+        </>
+    );
 };
 
 export default Login;

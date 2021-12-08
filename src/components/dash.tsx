@@ -1,23 +1,11 @@
 import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
-import { HomeIcon, XIcon, ClipboardIcon } from "@heroicons/react/outline"
-import { Routes, Route, Link } from "react-router-dom"
+import {XIcon} from "@heroicons/react/outline"
+import { Routes, Route } from "react-router-dom"
 
 import Button from "./button"
 import Error from "./error"
-import NavBar, { navItem } from "./navBar"
-// import LocalAuth from './localAuth';
 import Forms from './forms';
-
-const navigation: navItem[] = [
-  { name: "Dashboard", path: "/", Icon: HomeIcon, Link },
-  {
-    name: "Forms",
-    path: "/forms",
-    Icon: ClipboardIcon,
-    Link,
-  },
-]
 
 const Home: React.FC = () => {
   return (
@@ -44,7 +32,7 @@ const Dashboard: React.FC = () => {
 
   if (userIsAdmin) {
     return (
-      <div className="h-screen flex bg-gray-100">
+      <div className="flex flex-grow bg-gray-100">
         <Transition.Root show={sidebarOpen} as={React.Fragment}>
           <Dialog
             as="div"
@@ -104,27 +92,6 @@ const Dashboard: React.FC = () => {
                     />
                   </div>
                 </div>
-                {/* <div className="flex-shrink-0 flex bg-gray-700 p-4">
-                  <a href="/" className="flex-shrink-0 group block">
-                    <div className="flex items-center">
-                      <div>
-                        <img
-                          className="inline-block h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-base font-medium text-white">
-                          Tom Cook
-                        </p>
-                        <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
-                          View profile
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </div> */}
               </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14">
