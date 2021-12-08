@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Dashboard from './components/dash';
 import Login from './components/login';
 import useSession from './context/sessionContext';
+import Footer from './components/footer';
 
 const App: React.FC = () => {
     const {
@@ -18,7 +19,11 @@ const App: React.FC = () => {
       }
     })
 
-    return <>{authenticated ? <Dashboard /> : <Login />}</>;
+    return (
+    <>
+    {authenticated ? <Dashboard /> : <Login />}
+    <Footer />
+    </>);
 }
 
 export default App;
