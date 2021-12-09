@@ -73,12 +73,6 @@ const NavBar: React.FC = () => {
         setSession,
     } = useSession();
 
-    // const logoutFn = () => {
-    //     localStorage.removeItem('sessionToken');
-    //     window.location.href = '/';
-    //     setSession((prev) => ({ ...prev, authenticated: false }));
-    // };
-
     const loggedIn = authenticated;
     const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
 

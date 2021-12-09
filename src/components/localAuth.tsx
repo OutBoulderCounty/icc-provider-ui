@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Loader from './loader';
+import { LOCAL_STORAGE_SESSION_TOKEN, LOCAL_STORAGE_SIGN_UP, LOCAL_STORAGE_SIGN_UP_INFO } from '../utils';
 
 function LocalAuth() {
     useEffect(() => {
@@ -7,9 +8,9 @@ function LocalAuth() {
         const urlSearch = new URLSearchParams(url);
         const token = urlSearch.get('token');
         const signUpInfo = JSON.parse(
-            localStorage.getItem('signUpInfo') || '{ "noData": true }'
+            localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true }'
         );
-        const userInfo = JSON.parse(localStorage.getItem('signUp') || '{}');
+        const userInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}');
         const userUpdateInfo = { ...signUpInfo, ...userInfo };
 
         if (token) {
@@ -36,8 +37,7 @@ function LocalAuth() {
                 }
 
                 const sessionToken = authData.session_token;
-                await localStorage.setItem('sessionToken', sessionToken);
-                await localStorage.removeItem('userId');
+                await localStorage.setItem(LOCAL_STORAGE_SESSION_TOKEN, sessionToken);
 
                 if (!signUpInfo.noData) {
                     userUpdateInfo.address = `${signUpInfo.street}, ${signUpInfo.city}, ${signUpInfo.state} ${signUpInfo.zip}`;
@@ -63,8 +63,8 @@ function LocalAuth() {
                     //     'responseInfo',
                     //     JSON.stringify({ ...updateData.user })
                     // );
-                    await localStorage.removeItem('signUpInfo');
-                    await localStorage.removeItem('signUp');
+                    await localStorage.removeItem(LOCAL_STORAGE_SIGN_UP_INFO);
+                    await localStorage.removeItem(LOCAL_STORAGE_SIGN_UP);
 
                     window.location.href = '/';
                 }

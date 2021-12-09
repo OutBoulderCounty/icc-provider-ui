@@ -2,13 +2,16 @@ import React from 'react';
 
 import { LockClosedIcon } from '@heroicons/react/solid';
 import useSession from '../../context/sessionContext';
+import { LOCAL_STORAGE_SIGN_UP } from '../../utils';
 
 const ProvideEmail: React.FC = () => {
-    const signUp = JSON.parse(localStorage.getItem('signUp') || '{}');
-    const {
-        setSession,
-    } = useSession();
-    const [providedEmail, setProvidedEmail] = React.useState<string>(signUp.email || '');
+    const signUp = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}'
+    );
+    const { setSession } = useSession();
+    const [providedEmail, setProvidedEmail] = React.useState<string>(
+        signUp.email || ''
+    );
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -23,7 +26,7 @@ const ProvideEmail: React.FC = () => {
             signUpStep: 2,
         }));
         localStorage.setItem(
-            'signUp',
+            LOCAL_STORAGE_SIGN_UP,
             JSON.stringify({
                 ...signUp,
                 email: providedEmail,

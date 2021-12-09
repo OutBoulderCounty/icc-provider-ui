@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import useSession from '../../context/sessionContext';
 import CheckEmailModal from './checkEmailModal';
+import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils';
 
 const ProviderInfo: React.FC = () => {
     const {
@@ -8,7 +9,7 @@ const ProviderInfo: React.FC = () => {
     } = useSession();
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
-    const signUpInfo = JSON.parse(localStorage.getItem('signUpInfo') || '{}');
+    const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
     const [providerInfo, setProviderInfo] = React.useState({
         practiceName: signUpInfo.practiceName || '',
         specialty: signUpInfo.specialty || '',
@@ -25,7 +26,7 @@ const ProviderInfo: React.FC = () => {
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
-        localStorage.setItem('signUpInfo', JSON.stringify({ ...providerInfo }));
+        localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify({ ...providerInfo }));
     }, [providerInfo]);
 
     const handleClickSelect = () => {

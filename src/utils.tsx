@@ -1,5 +1,8 @@
-
 import {SessionInterface } from './context/sessionContext';
+
+export const LOCAL_STORAGE_SESSION_TOKEN = 'sessionToken';
+export const LOCAL_STORAGE_SIGN_UP_INFO = 'signUpInfo';
+export const LOCAL_STORAGE_SIGN_UP = 'signUp';
 
 type AppContextInterface = {
     session: SessionInterface;
@@ -7,9 +10,9 @@ type AppContextInterface = {
 }
 
 const logoutFn = ({session, setSession}:AppContextInterface) => {
-    localStorage.removeItem('sessionToken');
-    localStorage.removeItem('signUpInfo');
-    localStorage.removeItem('signUp');
+    localStorage.removeItem(LOCAL_STORAGE_SESSION_TOKEN);
+    localStorage.removeItem(LOCAL_STORAGE_SIGN_UP_INFO);
+    localStorage.removeItem(LOCAL_STORAGE_SIGN_UP);
     window.location.href = '/';
     setSession({
       email: '',

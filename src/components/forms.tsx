@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Loader from './loader';
-// import ErrorComponent from './error';
+import { LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
 
 type ActiveProps = {
     isActive: boolean;
@@ -34,7 +34,7 @@ type Form = {
 // };
 
 const Forms: React.FC = () => {
-    const sessionToken = localStorage.getItem('sessionToken');
+    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
     const [forms, setForms] = React.useState<Form[]>([]);
     const [isLoading, setIsLoading] = React.useState(false);
 
