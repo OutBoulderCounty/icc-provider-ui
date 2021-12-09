@@ -48,7 +48,8 @@ function LocalAuth() {
                         sessionToken ? sessionToken : ''
                     );
 
-                    const updateResponse = await fetch(
+                    // const updateResponse = await fetch(
+                    await fetch(
                       process.env.REACT_APP_API_ENDPOINT + '/user',
                         {
                             method: 'PUT',
@@ -57,11 +58,11 @@ function LocalAuth() {
                         }
                     );
 
-                    const updateData = await updateResponse.json();
-                    await localStorage.setItem(
-                        'responseInfo',
-                        JSON.stringify({ ...updateData.user })
-                    );
+                    // const updateData = await updateResponse.json();
+                    // await localStorage.setItem(
+                    //     'responseInfo',
+                    //     JSON.stringify({ ...updateData.user })
+                    // );
                     await localStorage.removeItem('signUpInfo');
                     await localStorage.removeItem('signUp');
 

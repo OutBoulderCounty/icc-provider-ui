@@ -13,6 +13,7 @@ import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
 import useSession from '../context/sessionContext';
+import logoutFn from '../utils';
 
 type IconProps = {
     className?: string;
@@ -67,20 +68,19 @@ const NavItem: React.FC<navItem> = (item) => {
 
 const NavBar: React.FC = () => {
     const {
+        session,
         session: { authenticated },
         setSession,
     } = useSession();
 
-
-    const logoutFn = () => {
-        localStorage.removeItem('sessionToken');
-        window.location.href = '/';
-        setSession((prev) => ({ ...prev, authenticated: false }));
-    };
+    // const logoutFn = () => {
+    //     localStorage.removeItem('sessionToken');
+    //     window.location.href = '/';
+    //     setSession((prev) => ({ ...prev, authenticated: false }));
+    // };
 
     const loggedIn = authenticated;
     const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
-
 
     return (
         <Disclosure as="nav" className="bg-white shadow max-h-max">
@@ -136,7 +136,12 @@ const NavBar: React.FC = () => {
                                     <div className="flex-shrink-0">
                                         <Button
                                             color="violet"
-                                            onClick={logoutFn}
+                                            onClick={() =>
+                                                logoutFn({
+                                                    session,
+                                                    setSession,
+                                                })
+                                            }
                                         >
                                             Logout
                                         </Button>

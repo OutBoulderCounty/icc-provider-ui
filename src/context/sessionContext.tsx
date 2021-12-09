@@ -38,3 +38,4 @@ const useSession = () => {
 };
 
 export default useSession;
+export type {SessionInterface};
