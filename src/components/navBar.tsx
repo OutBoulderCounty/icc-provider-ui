@@ -12,8 +12,7 @@ import { Link } from 'react-router-dom';
 import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
-import useSession from '../context/sessionContext';
-import { logoutFn } from '../utils';
+
 import AuthConsumer from '../context/authContext';
 
 type IconProps = {
@@ -68,11 +67,7 @@ const NavItem: React.FC<navItem> = (item) => {
 };
 
 const NavBar: React.FC = () => {
-    const {
-        session,
-        setSession,
-    } = useSession();
-    const { authed } = AuthConsumer();
+    const { authed, logout } = AuthConsumer();
 
     const loggedIn = authed;
     const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
@@ -131,12 +126,7 @@ const NavBar: React.FC = () => {
                                     <div className="flex-shrink-0">
                                         <Button
                                             color="violet"
-                                            onClick={() =>
-                                                logoutFn({
-                                                    session,
-                                                    setSession,
-                                                })
-                                            }
+                                            onClick={() => logout()}
                                         >
                                             Logout
                                         </Button>

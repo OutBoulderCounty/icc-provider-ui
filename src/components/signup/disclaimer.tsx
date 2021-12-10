@@ -1,15 +1,12 @@
 import React from 'react';
-import useSession from '../../context/sessionContext';
 import Button from '../button';
 import { LOCAL_STORAGE_SIGN_UP } from '../../utils'
 
 function Disclaimer() {
-  const { setSession } = useSession()
   const signUp = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}');
   const [checked, setChecked] = React.useState<boolean>(signUp.disclaimer || false);
 
   const handleSubmitDisclaimer = () => {
-    setSession(prev => ({...prev, disclaimer: true, signUpStep: 3 }))
     localStorage.setItem(LOCAL_STORAGE_SIGN_UP, JSON.stringify({ ...signUp, disclaimer: true, signUpStep: 3 }))
   };
 

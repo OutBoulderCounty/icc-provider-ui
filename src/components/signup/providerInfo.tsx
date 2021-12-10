@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
-import useSession from '../../context/sessionContext';
 import CheckEmailModal from './checkEmailModal';
 import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils';
 
 const ProviderInfo: React.FC = () => {
-    const {
-        session: { email },
-    } = useSession();
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
-    const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
+    const signUpInfo = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
+    );
     const [providerInfo, setProviderInfo] = React.useState({
+        email: signUpInfo.email || '',
         practiceName: signUpInfo.practiceName || '',
         specialty: signUpInfo.specialty || '',
         phone: signUpInfo.phone || '',
@@ -26,7 +25,10 @@ const ProviderInfo: React.FC = () => {
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
-        localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify({ ...providerInfo }));
+        localStorage.setItem(
+            LOCAL_STORAGE_SIGN_UP_INFO,
+            JSON.stringify({ ...providerInfo })
+        );
     }, [providerInfo]);
 
     const handleClickSelect = () => {
@@ -49,29 +51,7 @@ const ProviderInfo: React.FC = () => {
         e.preventDefault();
         (async () => {
             try {
-                const res = await fetch(
-                    process.env.REACT_APP_API_ENDPOINT + '/login',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            redirect_url: window.location.origin + '/localauth',
-                        }),
-                    }
-                );
-                try {
-                    const data = await res.json();
-                    console.log(data);
-                    if (data.error) {
-                        alert(data.error);
-                        return;
-                    }
-                } catch {
-                    setModalOpen(true);
-                }
+                
             } catch (e) {
                 alert(e);
             }
