@@ -94,7 +94,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                     onChange={(e) =>
                                                         setProviderInfo({
                                                             ...providerInfo,
-                                                            practiceName:
+                                                            PracticeName:
                                                                 e.target.value,
                                                         })
                                                     }
@@ -124,7 +124,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                     onChange={(e) =>
                                                         setProviderInfo({
                                                             ...providerInfo,
-                                                            specialty:
+                                                            Specialty:
                                                                 e.target.value,
                                                         })
                                                     }
@@ -159,7 +159,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        phone: e.target.value,
+                                                        Phone: e.target.value,
                                                     })
                                                 }
                                             />
@@ -184,7 +184,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        street: e.target.value,
+                                                        Street: e.target.value,
                                                     })
                                                 }
                                             />
@@ -209,7 +209,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        city: e.target.value,
+                                                        City: e.target.value,
                                                     })
                                                 }
                                             />
@@ -234,7 +234,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        state: e.target.value,
+                                                        State: e.target.value,
                                                     })
                                                 }
                                             />
@@ -259,7 +259,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        zip: e.target.value,
+                                                        Zip: e.target.value,
                                                     })
                                                 }
                                             />
@@ -304,7 +304,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        firstName:
+                                                        FirstName:
                                                             e.target.value,
                                                     })
                                                 }
@@ -338,7 +338,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        lastName:
+                                                        LastName:
                                                             e.target.value,
                                                     })
                                                 }
@@ -372,7 +372,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
-                                                        pronouns:
+                                                        Pronouns:
                                                             e.target.value,
                                                     })
                                                 }
