@@ -57,12 +57,9 @@ export const requiredInfoCheck = async () => {
 
     localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(userInfoData.user));
     if (!userInfoData.user.AgreementAccepted) {
-      alert('Please accept the terms and conditions');
+      alert('Please complete the sign up process');
       window.location.href = '/complete-sign-up';
-    } else {
-      alert('Welcome to the app');
     }
-
 };
 
 export const updateUserInfo = async () => {

@@ -35,6 +35,7 @@ const navigationLoggedIn: navItem[] = [
         Icon: ClipboardIcon,
         Link,
     },
+    { name: 'Update Account', path: '/account-update', Icon: HomeIcon, Link },
 ];
 
 const navigationLoggedOut: navItem[] = [

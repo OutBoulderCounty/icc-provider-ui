@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
 import CheckEmailModal from './checkEmailModal';
-import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
+import { LOCAL_STORAGE_SIGN_UP_INFO, requiredInfoCheck, updateUserInfo } from '../../utils';
 
-interface SignUpProps {
-  signUpStep: number;
-  setSignUpStep: (step: number) => void;
-}
 
-const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
+
+const ProviderInfo: React.FC = () => {
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
     const signUpInfo = JSON.parse(
-        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
+        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true}'
     );
 
     const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, Street: '', City: '', State: '', Zip: ''});
@@ -23,6 +20,10 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
             JSON.stringify({ ...providerInfo })
         );
     }, [providerInfo]);
+
+    if (providerInfo.noData) {
+      requiredInfoCheck();
+    }
 
     const handleClickSelect = () => {
         if (imageInput.current) {
@@ -53,7 +54,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
     };
 
     return (
-        <>
+        <div>
             <div className="max-w-7xl mx-auto px-4 pt-10 pb-10 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto">
                     <form
@@ -451,7 +452,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                 modalOpen={modalOpen}
                 modalType={'update'}
             />
-        </>
+        </div>
     );
 };
 

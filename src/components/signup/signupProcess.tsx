@@ -23,12 +23,7 @@ const SignUpProcess: React.FC = () => {
                     setSignUpStep={setSignUpStep}
                 />
             )}
-            {signUpStep === 2 && (
-                <ProviderInfo
-                    signUpStep={signUpStep}
-                    setSignUpStep={setSignUpStep}
-                />
-            )}
+            {signUpStep === 2 && <ProviderInfo />}
         </div>
     );
 };

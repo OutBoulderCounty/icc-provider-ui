@@ -1,24 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import ProvideEmail from './signup/provideEmail';
-import { LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
 import AuthConsumer from '../context/authContext';
 import { Navigate } from 'react-router';
 
 
 const Login: React.FC = () => {
-    const existingSessionToken = localStorage.getItem(
-        LOCAL_STORAGE_SESSION_TOKEN
-    );
-    const { authed, login } = AuthConsumer();
-
-    useEffect(() => {
-        if (existingSessionToken) {
-            (async () => {
-                await login();
-            })();
-        }
-    });
+    const { authed } = AuthConsumer();
 
     return (
         <>
