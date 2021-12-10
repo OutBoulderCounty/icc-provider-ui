@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../button';
-import { LOCAL_STORAGE_SIGN_UP } from '../../utils'
+import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils'
 
 interface SignUpProps {
   signUpStep: number;
@@ -8,10 +8,12 @@ interface SignUpProps {
 }
 
 const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
-  const signUp = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}');
-  const [checked, setChecked] = React.useState<boolean>(signUp.disclaimer || false);
+  const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
+  const [checked, setChecked] = React.useState<boolean>(signUpInfo.disclaimer || false);
 
   const handleSubmitDisclaimer = () => {
+    signUpInfo.disclaimer = checked;
+    localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(signUpInfo));
     setSignUpStep(signUpStep + 1);
   };
 

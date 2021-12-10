@@ -55,13 +55,39 @@ export const requiredInfoCheck = async () => {
       throw new Error(userInfoData.error);
     }
 
-    if (!userInfoData.AgreementAccepted) {
+    localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(userInfoData.user));
+    if (!userInfoData.user.AgreementAccepted) {
       alert('Please accept the terms and conditions');
       window.location.href = '/complete-sign-up';
     } else {
       alert('Welcome to the app');
     }
 
+};
+
+export const updateUserInfo = async () => {
+  const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+  const signUpInfo = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true }'
+  );
+
+  if (!signUpInfo.noData) {
+      signUpInfo.Address = `${signUpInfo.Street}, ${signUpInfo.City}, ${signUpInfo.State} ${signUpInfo.Zip}`;
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Authorization', sessionToken ? sessionToken : '');
+
+      const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
+          method: 'PUT',
+          headers: headers,
+          body: JSON.stringify(signUpInfo),
+      });
+      const userInfoData = await res.json();
+      if (userInfoData.error) {
+        throw new Error(userInfoData.error);
+      }
+      localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(userInfoData.user));
+  }
 };
 
 export default ProtectedRoute;

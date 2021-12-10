@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import CheckEmailModal from './checkEmailModal';
-import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils';
+import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
 
 interface SignUpProps {
   signUpStep: number;
@@ -13,20 +13,8 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
     );
-    const [providerInfo, setProviderInfo] = React.useState({
-        email: signUpInfo.email || '',
-        practiceName: signUpInfo.practiceName || '',
-        specialty: signUpInfo.specialty || '',
-        phone: signUpInfo.phone || '',
-        street: signUpInfo.street || '',
-        city: signUpInfo.city || '',
-        state: signUpInfo.state || '',
-        zip: signUpInfo.v || '',
-        firstName: signUpInfo.firstName || '',
-        lastName: signUpInfo.lastName || '',
-        pronouns: signUpInfo.pronouns || '',
-        photo: signUpInfo.photo || '',
-    });
+
+    const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, Street: '', City: '', State: '', Zip: ''});
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
@@ -56,7 +44,8 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
         e.preventDefault();
         (async () => {
             try {
-
+              await updateUserInfo();
+              window.location.href = '/';
             } catch (e) {
                 alert(e);
             }
@@ -100,7 +89,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                     autoComplete="practiceName"
                                                     className="flex-1 block w-full focus:ring-violet-light focus:border-violet-light min-w-0 rounded-md sm:text-sm border-gray-300"
                                                     value={
-                                                        providerInfo.practiceName
+                                                        providerInfo.PracticeName
                                                     }
                                                     onChange={(e) =>
                                                         setProviderInfo({
@@ -130,7 +119,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                     autoComplete="specialty"
                                                     className="flex-1 block w-full focus:ring-violet-light focus:border-violet-light min-w-0 rounded-md sm:text-sm border-gray-300"
                                                     value={
-                                                        providerInfo.specialty
+                                                        providerInfo.Specialty
                                                     }
                                                     onChange={(e) =>
                                                         setProviderInfo({
@@ -166,7 +155,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 autoComplete="phone"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
-                                                value={providerInfo.phone}
+                                                value={providerInfo.Phone}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -191,7 +180,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 id="street-address"
                                                 autoComplete="street-address"
                                                 className="block max-w-lg w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:text-sm border-gray-300 rounded-md"
-                                                value={providerInfo.street}
+                                                value={providerInfo.Street || ''}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -216,7 +205,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 id="city"
                                                 autoComplete="address-level2"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                                                value={providerInfo.city}
+                                                value={providerInfo.City || ''}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -241,7 +230,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 id="state"
                                                 autoComplete="address-level1"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                                                value={providerInfo.state}
+                                                value={providerInfo.State || ''}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -266,7 +255,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 id="postal-code"
                                                 autoComplete="postal-code"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                                                value={providerInfo.zip}
+                                                value={providerInfo.Zip || ''}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -311,7 +300,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 autoComplete="given-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
-                                                value={providerInfo.firstName}
+                                                value={providerInfo.FirstName}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -345,7 +334,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 autoComplete="family-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
-                                                value={providerInfo.lastName}
+                                                value={providerInfo.LastName}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
@@ -379,7 +368,7 @@ const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                                                 autoComplete="family-name"
                                                 className="max-w-lg block w-full shadow-sm focus:ring-violet-light focus:border-violet-light sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
                                                 required
-                                                value={providerInfo.pronouns}
+                                                value={providerInfo.Pronouns}
                                                 onChange={(e) =>
                                                     setProviderInfo({
                                                         ...providerInfo,
