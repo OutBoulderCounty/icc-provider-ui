@@ -11,7 +11,7 @@ const SignUpProcess: React.FC = () => {
     });
 
     return (
-        <>
+        <div>
             <StepTracker
                 signUpStep={signUpStep}
                 setSignUpStep={setSignUpStep}
@@ -29,7 +29,7 @@ const SignUpProcess: React.FC = () => {
                     setSignUpStep={setSignUpStep}
                 />
             )}
-        </>
+        </div>
     );
 };
 
