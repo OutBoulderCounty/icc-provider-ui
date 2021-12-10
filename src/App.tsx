@@ -8,6 +8,7 @@ import FAQ from './components/faq';
 import LocalAuth from './components/localAuth';
 import ProtectedRoute from './utils';
 import { Routes, Route } from 'react-router-dom';
+import SignUpProcess from './components/signup/signupProcess';
 
 const App: React.FC = () => {
     return (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/localauth" element={<LocalAuth />}></Route>
+                <Route path="/complete-sign-up" element={<SignUpProcess />}></Route>
             </Routes>
             <Footer />
         </div>

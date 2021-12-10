@@ -27,19 +27,11 @@ function UpdateUserInfo() {
                     sessionToken ? sessionToken : ''
                 );
 
-                // const updateResponse = await fetch(
                 await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
                     method: 'PUT',
                     headers: headers,
                     body: JSON.stringify(userUpdateInfo),
                 });
-
-                // const updateData = await updateResponse.json();
-                // await localStorage.setItem(
-                //     'responseInfo',
-                //     JSON.stringify({ ...updateData.user })
-                // );
-
                 await login();
             }
         })();

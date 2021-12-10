@@ -1,25 +1,19 @@
 import React from 'react';
 
-import useSession from '../../context/sessionContext';
+interface Props {
+  signUpStep: number;
+  setSignUpStep: (step: number) => void;
+}
 
 const steps = [
-    { id: 1, name: 'Provide email' },
-    { id: 2, name: 'About this resource' },
-    { id: 3, name: 'Provider information' },
+    { id: 1, name: 'About this resource' },
+    { id: 2, name: 'Provider information' },
 ];
 
-const StepTracker: React.FC = () => {
-    const {
-        session: { signUpStep },
-        setSession,
-    } = useSession();
+const StepTracker: React.FC<Props> = ({ signUpStep, setSignUpStep }) => {
 
     const handleChangeStep = (step: number) => {
-        if (step === 1) {
-            setSession((prev) => ({ ...prev, signUpStep: step }));
-        } else {
-            setSession((prev) => ({ ...prev, signUpStep: step }));
-        }
+        setSignUpStep(step);
     };
 
     return (
