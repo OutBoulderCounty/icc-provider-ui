@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import CheckEmailModal from './checkEmailModal';
 import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils';
 
-const ProviderInfo: React.FC = () => {
+interface SignUpProps {
+  signUpStep: number;
+  setSignUpStep: (step: number) => void;
+}
+
+const ProviderInfo: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
     const signUpInfo = JSON.parse(
@@ -51,7 +56,7 @@ const ProviderInfo: React.FC = () => {
         e.preventDefault();
         (async () => {
             try {
-                
+
             } catch (e) {
                 alert(e);
             }

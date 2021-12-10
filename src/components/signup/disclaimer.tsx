@@ -2,12 +2,17 @@ import React from 'react';
 import Button from '../button';
 import { LOCAL_STORAGE_SIGN_UP } from '../../utils'
 
-function Disclaimer() {
+interface SignUpProps {
+  signUpStep: number;
+  setSignUpStep: (step: number) => void;
+}
+
+const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
   const signUp = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}');
   const [checked, setChecked] = React.useState<boolean>(signUp.disclaimer || false);
 
   const handleSubmitDisclaimer = () => {
-    localStorage.setItem(LOCAL_STORAGE_SIGN_UP, JSON.stringify({ ...signUp, disclaimer: true, signUpStep: 3 }))
+    setSignUpStep(signUpStep + 1);
   };
 
     return (
