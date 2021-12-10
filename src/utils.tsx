@@ -31,7 +31,7 @@ export const logoutFn = ({session, setSession}:AppContextInterface) => {
 
 const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
   const { authed } = AuthConsumer();
-  return authed ? <>{children}</> : <Navigate to="/localauth" />;
+  return authed ? <>{children}</> : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;

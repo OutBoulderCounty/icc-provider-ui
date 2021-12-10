@@ -1,38 +1,43 @@
 import React from 'react';
-
 import { LockClosedIcon } from '@heroicons/react/solid';
-import useSession from '../../context/sessionContext';
-import { LOCAL_STORAGE_SIGN_UP } from '../../utils';
+import CheckEmailModal from './checkEmailModal';
 
 const ProvideEmail: React.FC = () => {
-    const signUp = JSON.parse(
-        localStorage.getItem(LOCAL_STORAGE_SIGN_UP) || '{}'
-    );
-    const { setSession } = useSession();
-    const [providedEmail, setProvidedEmail] = React.useState<string>(
-        signUp.email || ''
-    );
+    const [providedEmail, setProvidedEmail] = React.useState<string>('');
+    const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        //TODO: validate email
-        // If valid, send post request to server
-
-        // If not valid, continue signup process
-        setSession((prev) => ({
-            ...prev,
-            email: providedEmail,
-            signUpStep: 2,
-        }));
-        localStorage.setItem(
-            LOCAL_STORAGE_SIGN_UP,
-            JSON.stringify({
-                ...signUp,
-                email: providedEmail,
-                signUpStep: 2,
-            })
-        );
+        (async () => {
+            try {
+                const res = await fetch(
+                    process.env.REACT_APP_API_ENDPOINT + '/login',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: providedEmail,
+                            redirect_url: window.location.origin + '/localauth',
+                        }),
+                    }
+                );
+                try {
+                    const data = await res.json();
+                    console.log(data);
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+                } catch {
+                    setModalOpen(true);
+                }
+            } catch (e) {
+                alert(e);
+            }
+        })();
     };
 
     return (
@@ -93,6 +98,11 @@ const ProvideEmail: React.FC = () => {
                             </button>
                         </div>
                     </form>
+                    <CheckEmailModal
+                        setModalOpen={setModalOpen}
+                        modalOpen={modalOpen}
+                        modalType={'create'}
+                    />
                 </div>
             </div>
         </>
