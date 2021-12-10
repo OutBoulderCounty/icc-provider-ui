@@ -101,7 +101,7 @@ const ProvideEmail: React.FC = () => {
                     <CheckEmailModal
                         setModalOpen={setModalOpen}
                         modalOpen={modalOpen}
-                        modalType={'create'}
+                        modalType={'login'}
                     />
                 </div>
             </div>

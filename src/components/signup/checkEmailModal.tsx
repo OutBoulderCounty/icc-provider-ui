@@ -10,34 +10,42 @@ type Props = {
 };
 
 interface Modal {
-  title: string;
-  description: string;
-  buttonText: string;
+    title: string;
+    description: string;
+    buttonText: string;
 }
 
 interface ModalTypes {
-  [key: string]: Modal;
+    [key: string]: Modal;
 }
 
 const modalTypes: ModalTypes = {
-  "create": {
-    title: 'Account creation successful',
-    description: 'Please check your email for a magic link that will log you into the provider dashboard.',
-    buttonText: 'Go back to login page'
-  },
-  "signIn": {
-    title: 'Found you!',
-    description: 'Please check your email for a magic link that will log you into the provider dashboard.',
-    buttonText: 'Close'
-  }
-}
+    update: {
+        title: 'Account Information Update',
+        description: 'Thank you for updating your account information',
+        buttonText: 'Close',
+    },
+    login: {
+        title: 'No Passwords!!',
+        description:
+            'Please check your email for a magic link that will log you into the provider dashboard.',
+        buttonText: 'Close',
+    },
+    signIn: {
+        title: 'Found you!',
+        description:
+            'Please check your email for a magic link that will log you into the provider dashboard.',
+        buttonText: 'Close',
+    },
+};
 
-const CheckEmailModal: React.FC<Props> = ({ modalOpen, setModalOpen, modalType }) => {
-    const { setSession } = useSession();
-
+const CheckEmailModal: React.FC<Props> = ({
+    modalOpen,
+    setModalOpen,
+    modalType,
+}) => {
     const handleCreateAccount = () => {
         setModalOpen(false);
-        setSession((prev) => ({ ...prev, signUpStep: 1, email: '' }));
     };
 
     return (
@@ -106,7 +114,7 @@ const CheckEmailModal: React.FC<Props> = ({ modalOpen, setModalOpen, modalType }
                                     className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-violet text-base font-medium text-white hover:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light sm:text-sm"
                                     onClick={handleCreateAccount}
                                 >
-                                    Go back to login
+                                    {modalTypes[modalType].buttonText}
                                 </button>
                             </div>
                         </div>

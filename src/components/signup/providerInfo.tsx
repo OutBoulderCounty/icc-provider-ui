@@ -475,7 +475,7 @@ const ProviderInfo: React.FC = () => {
             <CheckEmailModal
                 setModalOpen={setModalOpen}
                 modalOpen={modalOpen}
-                modalType={'create'}
+                modalType={'update'}
             />
         </>
     );
