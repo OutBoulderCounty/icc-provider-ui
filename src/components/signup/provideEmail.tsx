@@ -4,10 +4,13 @@ import CheckEmailModal from './checkEmailModal';
 
 const ProvideEmail: React.FC = () => {
     const [providedEmail, setProvidedEmail] = React.useState<string>('');
+    const [buttonText, setButtonText] = React.useState<string>('Sign in');
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+    const [loading, setLoading] = React.useState<boolean>(false);
 
     const handleLoginFn = (e: React.SyntheticEvent) => {
         e.preventDefault();
+        setLoading(true);
 
         (async () => {
             try {
@@ -37,6 +40,8 @@ const ProvideEmail: React.FC = () => {
             } catch (e) {
                 alert(e);
             }
+            setProvidedEmail('');
+            setButtonText('Please check your email for a login link.')
         })();
     };
 
@@ -86,7 +91,8 @@ const ProvideEmail: React.FC = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet hover:bg-violet-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet"
+                                className="group disabled:opacity-50 disabled:cursor-not-allowed disabled:outline-none relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet hover:bg-violet-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet"
+                                disabled={loading}
                             >
                                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                                     <LockClosedIcon
@@ -94,7 +100,7 @@ const ProvideEmail: React.FC = () => {
                                         aria-hidden="true"
                                     />
                                 </span>
-                                Sign in
+                                {buttonText}
                             </button>
                         </div>
                     </form>

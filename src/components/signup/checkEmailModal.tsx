@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/outline';
-import useSession from '../../context/sessionContext';
 
 type Props = {
     modalOpen: boolean;
@@ -27,12 +26,6 @@ const modalTypes: ModalTypes = {
     },
     login: {
         title: 'No Passwords!!',
-        description:
-            'Please check your email for a magic link that will log you into the provider dashboard.',
-        buttonText: 'Close',
-    },
-    signIn: {
-        title: 'Found you!',
         description:
             'Please check your email for a magic link that will log you into the provider dashboard.',
         buttonText: 'Close',
