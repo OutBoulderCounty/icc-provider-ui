@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import Loader from './loader';
-import { authenticateUserToken, requiredInfoCheck, LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
+import { authenticateUserToken, requiredInfoCheck, getUserInfo, LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
 import AuthConsumer from '../context/authContext';
 import { Navigate } from 'react-router';
 
 function LocalAuth() {
-    const { authed, login } = AuthConsumer();
+    const { authed, login, logout } = AuthConsumer();
     const existingSessionToken = localStorage.getItem(
         LOCAL_STORAGE_SESSION_TOKEN
     );
@@ -20,9 +20,11 @@ function LocalAuth() {
           (async () => {
             try {
             await authenticateUserToken(token, login);
+            await getUserInfo();
             await requiredInfoCheck();
           } catch (error) {
             alert(error);
+            logout();
             window.location.href = '/login';
           }
           })();

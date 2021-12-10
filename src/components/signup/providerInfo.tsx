@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import CheckEmailModal from './checkEmailModal';
-import { LOCAL_STORAGE_SIGN_UP_INFO, requiredInfoCheck, updateUserInfo } from '../../utils';
+import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
 
 
 
@@ -8,7 +8,7 @@ const ProviderInfo: React.FC = () => {
     const [image, setImage] = React.useState('');
     const imageInput = React.useRef<HTMLInputElement>(null);
     const signUpInfo = JSON.parse(
-        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true}'
+        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
     );
     const addressArray = signUpInfo.Address?.split(';') || [];
 
@@ -21,10 +21,6 @@ const ProviderInfo: React.FC = () => {
             JSON.stringify({ ...providerInfo })
         );
     }, [providerInfo]);
-
-    if (providerInfo.noData) {
-      requiredInfoCheck();
-    }
 
     const handleClickSelect = () => {
         if (imageInput.current) {

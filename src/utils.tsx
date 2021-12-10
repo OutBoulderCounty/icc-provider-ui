@@ -53,8 +53,8 @@ export const authenticateUserToken = async (
     login();
 };
 
-export const requiredInfoCheck = async () => {
-    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+export const getUserInfo = async () => {
+  const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', sessionToken ? sessionToken : '');
@@ -71,7 +71,11 @@ export const requiredInfoCheck = async () => {
         LOCAL_STORAGE_SIGN_UP_INFO,
         JSON.stringify(userInfoData.user)
     );
-    if (!userInfoData.user.AgreementAccepted) {
+}
+
+export const requiredInfoCheck = async () => {
+  const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
+    if (!signUpInfo.AgreementAccepted) {
         alert('Please complete the sign up process');
         window.location.href = '/complete-sign-up';
     }
