@@ -1,9 +1,6 @@
 import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
 import {XIcon} from "@heroicons/react/outline"
-import { Routes, Route } from "react-router-dom"
-
-import Forms from './forms';
 
 const Home: React.FC = () => {
   return (
@@ -99,16 +96,7 @@ const Dashboard: React.FC = () => {
         </Transition.Root>
 
         <div className="flex flex-col w-0 flex-1">
-          <div className="overflow-y-scroll overflow-x-hidden">
-            <Routes>
-              {/* <Route path="/localauth" element={<LocalAuth />}>
-              </Route> */}
-              <Route path="/" element={<Home />}>
-              </Route>
-              <Route path="/forms" element={<Forms />}>
-              </Route>
-            </Routes>
-          </div>
+            <Home />
         </div>
       </div>
     )

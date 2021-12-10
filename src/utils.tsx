@@ -1,6 +1,7 @@
 import React from 'react';
-import Loader from './components/loader';
-import useSession, {SessionInterface } from './context/sessionContext';
+import { Navigate } from 'react-router';
+import AuthConsumer from './context/authContext';
+import {SessionInterface } from './context/sessionContext';
 
 export const LOCAL_STORAGE_SESSION_TOKEN = 'sessionToken';
 export const LOCAL_STORAGE_SIGN_UP_INFO = 'signUpInfo';
@@ -29,18 +30,8 @@ export const logoutFn = ({session, setSession}:AppContextInterface) => {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
-  const { session: { authenticated }} = useSession();
-
-  if (!authenticated) {
-    window.location.href = "/login";
-    return <Loader />
-  }
-
-  return (
-    <div>
-      {children}
-    </div>
-  )
+  const { authed } = AuthConsumer();
+  return authed ? <>{children}</> : <Navigate to="/localauth" />;
 }
 
 export default ProtectedRoute;
