@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom"
 import Button from "./button"
 import Error from "./error"
 import Forms from './forms';
+import useSession from '../context/sessionContext';
+import Loader from './loader';
 
 const Home: React.FC = () => {
   return (
@@ -27,10 +29,16 @@ const Home: React.FC = () => {
 }
 
 const Dashboard: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(false)
-  const [userIsAdmin] = React.useState(true)
+  const {session: {authenticated}} = useSession();
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  // const [userIsAdmin] = React.useState(true);
 
-  if (userIsAdmin) {
+  if (!authenticated) {
+    window.location.href = "/login";
+    return <Loader />;
+  }
+
+  // if (userIsAdmin) {
     return (
       <div className="flex flex-grow bg-gray-100">
         <Transition.Root show={sidebarOpen} as={React.Fragment}>
@@ -114,29 +122,29 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
     )
-  }
+  // }
 
-  const logoutFn = () => {
-    console.log("should be logging out now")
-    // TODO: logout
-    return null
-  }
+  // const logoutFn = () => {
+  //   console.log("should be logging out now")
+  //   // TODO: logout
+  //   return null
+  // }
 
-  return (
-    <>
-      <Error message="User is not allowed to access the admin dashboard" />
-      <div className="mx-auto max-w-lg">
-        <div className="justify-around flex">
-          <a href={process.env.REACT_APP_ICC_URL}>
-            <Button color="violet">Go home</Button>
-          </a>
-          <Button color="violet" onClick={logoutFn}>
-            Logout
-          </Button>
-        </div>
-      </div>
-    </>
-  )
+  // return (
+  //   <>
+  //     <Error message="User is not allowed to access the admin dashboard" />
+  //     <div className="mx-auto max-w-lg">
+  //       <div className="justify-around flex">
+  //         <a href={process.env.REACT_APP_ICC_URL}>
+  //           <Button color="violet">Go home</Button>
+  //         </a>
+  //         <Button color="violet" onClick={logoutFn}>
+  //           Logout
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   </>
+  // )
 }
 
-export default Dashboard
+export default Dashboard;
