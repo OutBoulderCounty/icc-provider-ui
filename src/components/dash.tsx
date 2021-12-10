@@ -3,11 +3,7 @@ import { Dialog, Transition } from "@headlessui/react"
 import {XIcon} from "@heroicons/react/outline"
 import { Routes, Route } from "react-router-dom"
 
-import Button from "./button"
-import Error from "./error"
 import Forms from './forms';
-import useSession from '../context/sessionContext';
-import Loader from './loader';
 
 const Home: React.FC = () => {
   return (
@@ -29,14 +25,8 @@ const Home: React.FC = () => {
 }
 
 const Dashboard: React.FC = () => {
-  const {session: {authenticated}} = useSession();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
   // const [userIsAdmin] = React.useState(true);
-
-  if (!authenticated) {
-    window.location.href = "/login";
-    return <Loader />;
-  }
 
   // if (userIsAdmin) {
     return (

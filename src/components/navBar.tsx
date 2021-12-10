@@ -13,7 +13,7 @@ import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
 import useSession from '../context/sessionContext';
-import logoutFn from '../utils';
+import { logoutFn } from '../utils';
 
 type IconProps = {
     className?: string;
