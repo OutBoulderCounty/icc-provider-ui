@@ -10,8 +10,9 @@ const ProviderInfo: React.FC = () => {
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true}'
     );
+    const addressArray = signUpInfo.Address?.split(';') || [];
 
-    const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, Street: '', City: '', State: '', Zip: ''});
+    const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, Street: addressArray[0], City: addressArray[1], State: addressArray[2], Zip: addressArray[3]});
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {

@@ -69,7 +69,7 @@ export const updateUserInfo = async () => {
   );
 
   if (!signUpInfo.noData) {
-      signUpInfo.Address = `${signUpInfo.Street}, ${signUpInfo.City}, ${signUpInfo.State} ${signUpInfo.Zip}`;
+      signUpInfo.Address = `${signUpInfo.Street};${signUpInfo.City};${signUpInfo.State};${signUpInfo.Zip}`;
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Authorization', sessionToken ? sessionToken : '');

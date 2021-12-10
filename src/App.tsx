@@ -51,11 +51,19 @@ const App: React.FC = () => {
                 <Route path="/localauth" element={<LocalAuth />}></Route>
                 <Route
                     path="/complete-sign-up"
-                    element={<SignUpProcess />}
+                    element={
+                        <ProtectedRoute>
+                            <SignUpProcess />
+                        </ProtectedRoute>
+                    }
                 ></Route>
                 <Route
                     path="/account-update"
-                    element={<ProviderInfo />}
+                    element={
+                        <ProtectedRoute>
+                            <ProviderInfo />
+                        </ProtectedRoute>
+                    }
                 ></Route>
             </Routes>
             <Footer />
