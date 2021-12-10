@@ -13,7 +13,8 @@ import { useLocation, LinkProps } from 'react-router-dom';
 
 import Button from './button';
 import useSession from '../context/sessionContext';
-import logoutFn from '../utils';
+import { logoutFn } from '../utils';
+import AuthConsumer from '../context/authContext';
 
 type IconProps = {
     className?: string;
@@ -40,7 +41,7 @@ const navigationLoggedIn: navItem[] = [
 const navigationLoggedOut: navItem[] = [
     {
         name: 'Login / Signup',
-        path: '/',
+        path: '/login',
         Icon: LoginIcon,
         Link,
     },
@@ -69,11 +70,11 @@ const NavItem: React.FC<navItem> = (item) => {
 const NavBar: React.FC = () => {
     const {
         session,
-        session: { authenticated },
         setSession,
     } = useSession();
+    const { authed } = AuthConsumer();
 
-    const loggedIn = authenticated;
+    const loggedIn = authed;
     const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
 
     return (

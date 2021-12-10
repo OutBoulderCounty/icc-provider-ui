@@ -58,7 +58,7 @@ const ProviderInfo: React.FC = () => {
                         },
                         body: JSON.stringify({
                             email: email,
-                            redirect_url: window.location.href + 'localauth',
+                            redirect_url: window.location.origin + '/localauth',
                         }),
                     }
                 );

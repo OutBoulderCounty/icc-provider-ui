@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 
-import { Routes, Route } from 'react-router-dom';
-
 import ProvideEmail from './signup/provideEmail';
 import SignUpProcess from './signup/signupProcess';
 import useSession from '../context/sessionContext';
-import LocalAuth from './localAuth';
-import FAQ from './faq';
+
 
 const authorizedList: string[] = [];
 
@@ -29,14 +26,7 @@ const Login: React.FC = () => {
     return (
         <>
             <div className="overflow-y-scroll overflow-x-hidden flex-grow">
-                <Routes>
-                    <Route
-                        path="/"
-                        element={email ? <SignUpProcess /> : <ProvideEmail />}
-                    />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/localauth" element={<LocalAuth />}></Route>
-                </Routes>
+                {email ? <SignUpProcess /> : <ProvideEmail />}
             </div>
         </>
     );

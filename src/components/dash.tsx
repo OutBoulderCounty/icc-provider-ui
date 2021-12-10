@@ -1,11 +1,6 @@
 import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
 import {XIcon} from "@heroicons/react/outline"
-import { Routes, Route } from "react-router-dom"
-
-import Button from "./button"
-import Error from "./error"
-import Forms from './forms';
 
 const Home: React.FC = () => {
   return (
@@ -27,10 +22,10 @@ const Home: React.FC = () => {
 }
 
 const Dashboard: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(false)
-  const [userIsAdmin] = React.useState(true)
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  // const [userIsAdmin] = React.useState(true);
 
-  if (userIsAdmin) {
+  // if (userIsAdmin) {
     return (
       <div className="flex flex-grow bg-gray-100">
         <Transition.Root show={sidebarOpen} as={React.Fragment}>
@@ -101,42 +96,33 @@ const Dashboard: React.FC = () => {
         </Transition.Root>
 
         <div className="flex flex-col w-0 flex-1">
-          <div className="overflow-y-scroll overflow-x-hidden">
-            <Routes>
-              {/* <Route path="/localauth" element={<LocalAuth />}>
-              </Route> */}
-              <Route path="/" element={<Home />}>
-              </Route>
-              <Route path="/forms" element={<Forms />}>
-              </Route>
-            </Routes>
-          </div>
+            <Home />
         </div>
       </div>
     )
-  }
+  // }
 
-  const logoutFn = () => {
-    console.log("should be logging out now")
-    // TODO: logout
-    return null
-  }
+  // const logoutFn = () => {
+  //   console.log("should be logging out now")
+  //   // TODO: logout
+  //   return null
+  // }
 
-  return (
-    <>
-      <Error message="User is not allowed to access the admin dashboard" />
-      <div className="mx-auto max-w-lg">
-        <div className="justify-around flex">
-          <a href={process.env.REACT_APP_ICC_URL}>
-            <Button color="violet">Go home</Button>
-          </a>
-          <Button color="violet" onClick={logoutFn}>
-            Logout
-          </Button>
-        </div>
-      </div>
-    </>
-  )
+  // return (
+  //   <>
+  //     <Error message="User is not allowed to access the admin dashboard" />
+  //     <div className="mx-auto max-w-lg">
+  //       <div className="justify-around flex">
+  //         <a href={process.env.REACT_APP_ICC_URL}>
+  //           <Button color="violet">Go home</Button>
+  //         </a>
+  //         <Button color="violet" onClick={logoutFn}>
+  //           Logout
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   </>
+  // )
 }
 
-export default Dashboard
+export default Dashboard;
