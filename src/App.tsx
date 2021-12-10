@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Dashboard from './components/dash';
 import Login from './components/login';
 import Footer from './components/footer';
@@ -10,22 +10,10 @@ import ProtectedRoute from './utils';
 import { Routes, Route } from 'react-router-dom';
 import SignUpProcess from './components/signup/signupProcess';
 import ProviderInfo from './components/signup/providerInfo';
-import { LOCAL_STORAGE_SESSION_TOKEN } from './utils';
-import AuthConsumer from './context/authContext';
+
 
 const App: React.FC = () => {
-    const existingSessionToken = localStorage.getItem(
-        LOCAL_STORAGE_SESSION_TOKEN
-    );
-    const { login } = AuthConsumer();
 
-    useEffect(() => {
-        if (existingSessionToken) {
-            (async () => {
-                await login();
-            })();
-        }
-    });
     return (
         <div className="min-h-screen flex flex-col justify-between">
             <NavBar />
@@ -65,6 +53,7 @@ const App: React.FC = () => {
                         </ProtectedRoute>
                     }
                 ></Route>
+                {/* <Route path="*" element={<Login />}></Route> */}
             </Routes>
             <Footer />
         </div>
