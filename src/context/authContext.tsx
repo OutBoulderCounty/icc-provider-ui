@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { LOCAL_STORAGE_SIGN_UP_INFO, LOCAL_STORAGE_SIGN_UP} from "../utils";
 
 interface AuthContextInterface {
   authed: boolean;
@@ -21,13 +21,15 @@ export function useAuth() {
     login() {
       return new Promise((res) => {
         setAuthed(true);
-        res(null);
+        localStorage.removeItem(LOCAL_STORAGE_SIGN_UP_INFO);
+        localStorage.removeItem(LOCAL_STORAGE_SIGN_UP);
+        res("Logged In");
       });
     },
     logout() {
       return new Promise((res) => {
         setAuthed(false);
-        res(null);
+        res("Logged Out");
       });
     }
   };

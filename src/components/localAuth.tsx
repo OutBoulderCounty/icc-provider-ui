@@ -75,8 +75,7 @@ function LocalAuth() {
                     //     'responseInfo',
                     //     JSON.stringify({ ...updateData.user })
                     // );
-                    await localStorage.removeItem(LOCAL_STORAGE_SIGN_UP_INFO);
-                    await localStorage.removeItem(LOCAL_STORAGE_SIGN_UP);
+
                     await login();
                 }
             })();
