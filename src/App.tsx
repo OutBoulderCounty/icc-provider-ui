@@ -10,6 +10,7 @@ import ProtectedRoute from './utils';
 import { Routes, Route } from 'react-router-dom';
 import SignUpProcess from './components/signup/signupProcess';
 import ProviderInfo from './components/signup/providerInfo';
+import FormLoader from './components/formLoader';
 
 
 const App: React.FC = () => {
@@ -53,7 +54,14 @@ const App: React.FC = () => {
                         </ProtectedRoute>
                     }
                 ></Route>
-                {/* <Route path="*" element={<Login />}></Route> */}
+                <Route
+                    path="/form/:id"
+                    element={
+                        <ProtectedRoute>
+                            <FormLoader />
+                        </ProtectedRoute>
+                    }
+                ></Route>
             </Routes>
             <Footer />
         </div>

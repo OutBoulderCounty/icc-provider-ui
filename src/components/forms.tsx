@@ -29,10 +29,6 @@ type Form = {
     live: boolean;
 };
 
-// type Error = {
-//     error: string;
-// };
-
 const Forms: React.FC = () => {
     const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
     const [forms, setForms] = React.useState<Form[]>([]);
@@ -41,9 +37,6 @@ const Forms: React.FC = () => {
     if (isLoading) {
         return <Loader />;
     }
-    // if (error) {
-    //     return <ErrorComponent message={String(error)} />;
-    // }
 
     if (!forms?.length) {
         const headers = new Headers();
@@ -72,9 +65,9 @@ const Forms: React.FC = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <div className="-my-2 sm:-mx-6 lg:-mx-8">
+            <div className="-my-3 sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="shadow sm:rounded-lg">
+                    <div className="shadow sm:rounded-lg p-5">
                         <table className="divide-y divide-gray-200 max-w-xl mx-auto border border-gray-200 h-full">
                             <thead className="bg-gray-50">
                                 <tr>
@@ -105,7 +98,11 @@ const Forms: React.FC = () => {
                                 </tr>
                             </thead>
                             <tbody className="overflow-y-scroll">
-                                {forms?.map((form, formIdx) => (
+                                {forms?.sort((a, b) => {
+                                    if (a.required < b.required) return 1;
+                                    if (a.required > b.required) return -1;
+                                    return 0;
+                                }).map((form, formIdx) => (
                                     <tr
                                         key={form.id}
                                         className={
@@ -131,7 +128,7 @@ const Forms: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a
-                                                href="/"
+                                                href={`/form/${form.id}`}
                                                 className="text-violet hover:text-violet-darkest"
                                             >
                                                 Edit

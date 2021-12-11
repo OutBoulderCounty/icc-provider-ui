@@ -54,7 +54,7 @@ export const authenticateUserToken = async (
 };
 
 export const getUserInfo = async () => {
-  const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', sessionToken ? sessionToken : '');
@@ -71,10 +71,12 @@ export const getUserInfo = async () => {
         LOCAL_STORAGE_SIGN_UP_INFO,
         JSON.stringify(userInfoData.user)
     );
-}
+};
 
 export const requiredInfoCheck = async () => {
-  const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
+    const signUpInfo = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
+    );
     if (!signUpInfo.AgreementAccepted) {
         alert('Please complete the sign up process');
         window.location.href = '/complete-sign-up';
@@ -107,6 +109,25 @@ export const updateUserInfo = async () => {
             JSON.stringify(userInfoData.user)
         );
     }
+};
+
+export const getForm = async (formId: string | undefined) => {
+    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', sessionToken ? sessionToken : '');
+
+    const response = await fetch(
+        process.env.REACT_APP_API_ENDPOINT + `/form/${formId}`, {
+            method: 'GET',
+            headers: headers,
+        }
+    );
+    const data = await response.json();
+    if (data.error) {
+        throw new Error(data.error);
+    }
+    return data.form;
 };
 
 export default ProtectedRoute;
