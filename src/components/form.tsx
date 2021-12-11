@@ -2,6 +2,8 @@ import React from 'react';
 import FormHeader from './formComponents/formHeader';
 import FormTextArea from './formComponents/formTextArea';
 import FormRadio from './formComponents/formRadio';
+import FormText from './formComponents/formText';
+import FormCheckboxes from './formComponents/formCheckboxes';
 
 const Form: React.FC<any> = ({ form, setForm }) => {
     return (
@@ -37,8 +39,26 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                                         setForm={setForm}
                                     />
                                 );
-                            }
-                            return null;
+                            } else if (element.type === 'Text') {
+                                return (
+                                    <FormText
+                                        key={index}
+                                        name={form.name}
+                                        element={element}
+                                        setForm={setForm}
+                                    />
+                                );
+                            } else if (element.type === 'Checkboxes') {
+                              return (
+                                  <FormCheckboxes
+                                      key={index}
+                                      name={form.name}
+                                      element={element}
+                                      setForm={setForm}
+                                  />
+                              );
+                          }
+                            return <h1>Error {element.type}</h1>;
                         })}
                     </div>
                 </div>
