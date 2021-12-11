@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormCheckboxes({ element }: any) {
+function FormCheckboxes({ element, setFormData }: any) {
     return (
         <fieldset className="space-y-5 mb-4">
             <legend className="sr-only">{element.label}</legend>
@@ -26,6 +26,8 @@ function FormCheckboxes({ element }: any) {
                                                     name="comments"
                                                     type="checkbox"
                                                     className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300 rounded"
+                                                    checked={option.value}
+                                                    onChange={(e) => setFormData((prev: any) => ({ ...prev}))}
                                                 />
                                             </div>
                                             <div className="ml-3 text-sm">
