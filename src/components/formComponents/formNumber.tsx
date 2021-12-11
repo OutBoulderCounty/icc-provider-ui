@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormText({ element }: any) {
+const FormNumber = ({ element }: any) => {
     return (
         <div>
             <label
@@ -11,8 +11,7 @@ function FormText({ element }: any) {
             </label>
             <div className="mt-1">
                 <input
-                    type="email"
-                    name="email"
+                    type="number"
                     id="email"
                     className="shadow-sm focus:ring-violet-light focus:border-violet-light block w-full sm:text-sm border-gray-300 rounded-md"
                     placeholder="you@example.com"
@@ -20,6 +19,6 @@ function FormText({ element }: any) {
             </div>
         </div>
     );
-}
+};
 
-export default FormText;
+export default FormNumber;

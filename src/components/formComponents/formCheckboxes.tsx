@@ -9,14 +9,14 @@ function FormCheckboxes({ element }: any) {
             </p>
             {element.Options.map((option: any) => (
                 <>
-                    <div className="relative flex items-start">
+                    <div key={option.id} className="relative flex items-start">
                         <div className="flex items-center h-5">
                             <input
                                 id="comments"
                                 aria-describedby="comments-description"
                                 name="comments"
                                 type="checkbox"
-                                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300 rounded"
                             />
                         </div>
                         <div className="ml-3 text-sm">

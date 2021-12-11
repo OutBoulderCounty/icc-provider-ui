@@ -4,6 +4,7 @@ import FormTextArea from './formComponents/formTextArea';
 import FormRadio from './formComponents/formRadio';
 import FormText from './formComponents/formText';
 import FormCheckboxes from './formComponents/formCheckboxes';
+import FormNumber from './formComponents/formNumber';
 
 const Form: React.FC<any> = ({ form, setForm }) => {
     return (
@@ -11,11 +12,11 @@ const Form: React.FC<any> = ({ form, setForm }) => {
             <form className="space-y-8 divide-y divide-gray-200">
                 <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div>
-                        {form.Elements.map((element: any, index: number) => {
+                        {form.Elements.map((element: any) => {
                             if (element.type === 'Header') {
                                 return (
                                     <FormHeader
-                                        key={index}
+                                        key={element.id}
                                         name={form.name}
                                         element={element}
                                         setForm={setForm}
@@ -24,7 +25,7 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                             } else if (element.type === 'Text Area') {
                                 return (
                                     <FormTextArea
-                                        key={index}
+                                        key={element.id}
                                         name={form.name}
                                         element={element}
                                         setForm={setForm}
@@ -33,7 +34,7 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                             } else if (element.type === 'Radio Buttons') {
                                 return (
                                     <FormRadio
-                                        key={index}
+                                        key={element.id}
                                         name={form.name}
                                         element={element}
                                         setForm={setForm}
@@ -42,7 +43,7 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                             } else if (element.type === 'Text') {
                                 return (
                                     <FormText
-                                        key={index}
+                                        key={element.id}
                                         name={form.name}
                                         element={element}
                                         setForm={setForm}
@@ -51,14 +52,23 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                             } else if (element.type === 'Checkboxes') {
                               return (
                                   <FormCheckboxes
-                                      key={index}
+                                      key={element.id}
                                       name={form.name}
                                       element={element}
                                       setForm={setForm}
                                   />
                               );
-                          }
-                            return <h1>Error {element.type}</h1>;
+                          } else if (element.type === 'Number') {
+                            return (
+                                <FormNumber
+                                    key={element.id}
+                                    name={form.name}
+                                    element={element}
+                                    setForm={setForm}
+                                />
+                            );
+                        }
+                            return <h1 key={element.id}>Error {element.type}</h1>;
                         })}
                     </div>
                 </div>
@@ -67,13 +77,13 @@ const Form: React.FC<any> = ({ form, setForm }) => {
                     <div className="flex justify-end">
                         <button
                             type="button"
-                            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-violet hover:bg-violet-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
                         >
                             Save
                         </button>

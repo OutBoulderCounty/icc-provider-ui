@@ -18,7 +18,7 @@ function FormRadio({ element }: any) {
                 name="notification-method"
                 type="radio"
                 defaultChecked={option.id === 'email'}
-                className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300"
               />
               <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
                 {option.name}
