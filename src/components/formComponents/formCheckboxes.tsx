@@ -2,7 +2,7 @@ import React from 'react';
 
 function FormCheckboxes({ element }: any) {
     return (
-        <fieldset className="space-y-5">
+        <fieldset className="space-y-5 mb-4">
             <legend className="sr-only">{element.label}</legend>
             <p className="block text-sm font-medium text-gray-700">
                 {element.label}

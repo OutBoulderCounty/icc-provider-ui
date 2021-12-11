@@ -1,21 +1,21 @@
 import React from 'react';
 
-function FormTextArea({ element }: any) {
+function FormTextArea({ element, setFormData }: any) {
     return (
-        <div>
+        <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
             <label
-                htmlFor="comment"
-                className="block text-sm font-medium text-gray-700"
+                htmlFor={element.id}
+                className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
             >
                 {element.label}
             </label>
-            <div className="mt-1">
+            <div className="mt-1 sm:mt-0 sm:col-span-2">
                 <textarea
-                    rows={4}
-                    name="comment"
-                    id="comment"
-                    className="shadow-sm focus:ring-violet-light focus:border-violet-light block w-full sm:text-sm border-gray-300 rounded-md"
-                    defaultValue={''}
+                    rows={3}
+                    id={element.id}
+                    className="max-w-lg shadow-sm block w-full focus:ring-violet-light focus:border-violet-light sm:text-sm border border-gray-300 rounded-md"
+                    value={element.value}
+                    onChange={(e) => setFormData((prev: any) => ({ ...prev, [element.id]: {...element, value: e.target.value} }))}
                 />
             </div>
         </div>

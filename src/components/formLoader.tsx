@@ -36,10 +36,8 @@ const FormLoader = () => {
     return <Loader />
   }
 
-  const formProps = {form, setForm}
-
   if (form?.name) {
-    return <Form {...formProps} />
+    return <Form {...form} />
   }
 
   return <Loader />

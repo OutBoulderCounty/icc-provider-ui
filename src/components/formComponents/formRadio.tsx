@@ -5,7 +5,7 @@ function FormRadio({ element }: any) {
 
 
   return (
-    <div>
+    <div className="mb-4">
       <label className="text-base font-medium text-gray-900">{element.label}</label>
       {/* <p className="text-sm leading-5 text-gray-500">How do you prefer to receive notifications?</p> */}
       <fieldset className="mt-4">

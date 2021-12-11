@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormNumber = ({ element }: any) => {
     return (
-        <div>
+        <div className="mb-4">
             <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
