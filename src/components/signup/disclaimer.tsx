@@ -99,7 +99,7 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                     </ul>
 
                     <p>
-                        You can follow this <a href='https://develop.inclusivecareco.org/glossary'>link</a> to find a
+                        You can follow this <a href='https://develop.inclusivecareco.org/glossary' target="blank">link</a> to find a
                         glossary of terms that we use throughout our
                         questionnaire.
                     </p>

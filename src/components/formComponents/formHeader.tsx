@@ -8,7 +8,7 @@ const FormHeader = ({ header, name }: any) => {
               {name}
           </h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              {header.label ? header.label: 'Name'}
+              {header.label ? header.label: ''}
           </p>
       </div>
   );
