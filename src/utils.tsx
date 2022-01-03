@@ -90,7 +90,7 @@ export const updateUserInfo = async () => {
     );
 
     if (!signUpInfo.noData) {
-        signUpInfo.Address = `${signUpInfo.street};${signUpInfo.city};${signUpInfo.state};${signUpInfo.zip}`;
+        signUpInfo.address = `${signUpInfo.street};${signUpInfo.city};${signUpInfo.state};${signUpInfo.zip}`;
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', sessionToken ? sessionToken : '');
@@ -98,7 +98,7 @@ export const updateUserInfo = async () => {
         const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
             method: 'PUT',
             headers: headers,
-            body: JSON.stringify(signUpInfo),
+            body: JSON.stringify(signUpInfo).replace(/[']/g, '&apos;'),
         });
         const userInfoData = await res.json();
         if (userInfoData.error) {
@@ -106,7 +106,7 @@ export const updateUserInfo = async () => {
         }
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
-            JSON.stringify(userInfoData.user)
+            JSON.stringify(userInfoData.user).replace(/&apos;/g, '\'')
         );
     }
 };

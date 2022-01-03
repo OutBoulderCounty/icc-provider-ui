@@ -5,12 +5,12 @@ import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
 
 
 const ProviderInfo: React.FC = () => {
-    const [image, setImage] = React.useState('');
-    const imageInput = React.useRef<HTMLInputElement>(null);
+    // const [image, setImage] = React.useState('');
+    // const imageInput = React.useRef<HTMLInputElement>(null);
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
     );
-    const addressArray = signUpInfo.Address?.split(';') || [];
+    const addressArray = signUpInfo.address?.split(';') || [];
 
     const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, street: addressArray[0], city: addressArray[1], state: addressArray[2], zip: addressArray[3]});
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -22,20 +22,20 @@ const ProviderInfo: React.FC = () => {
         );
     }, [providerInfo]);
 
-    const handleClickSelect = () => {
-        if (imageInput.current) {
-            imageInput.current.click();
-        }
-    };
+    // const handleClickSelect = () => {
+    //     if (imageInput.current) {
+    //         imageInput.current.click();
+    //     }
+    // };
 
-    const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target) {
-            if (event.target.files && event.target.files[0]) {
-                setImage(URL.createObjectURL(event.target.files[0]));
-                console.log(image);
-            }
-        }
-    };
+    // const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (event.target) {
+    //         if (event.target.files && event.target.files[0]) {
+    //             setImage(URL.createObjectURL(event.target.files[0]));
+    //             console.log(image);
+    //         }
+    //     }
+    // };
 
     const handleUserCreate = (e: React.SyntheticEvent) => {
         // TODO: LOADING INDICATOR
