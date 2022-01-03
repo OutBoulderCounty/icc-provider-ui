@@ -15,7 +15,7 @@ function FormText({ element, setFormData }: any) {
                         type="text"
                         id={element.id}
                         className="flex-1 block w-full focus:ring-violet-light focus:border-violet-light min-w-0 rounded-md sm:text-sm border-gray-300"
-                        value={element.value}
+                        value={element.value || ''}
                         onChange={(e) => setFormData((prev: any) => ({ ...prev, [element.id]: {...element, value: e.target.value} }))}
                     />
                 </div>
