@@ -11,7 +11,7 @@ function FormRadio({ element }: any) {
       <fieldset className="mt-4">
         <legend className="sr-only">Radio button options for {element.label}</legend>
         <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
-          {element.Options.map((option: any) => (
+          {element.options.map((option: any) => (
             <div key={option.id} className="flex items-center">
               <input
                 id={option.id}

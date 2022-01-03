@@ -18,7 +18,7 @@ function FormCheckboxes({ element, setFormData }: any) {
                             </div>
                             <div className="mt-4 sm:mt-0 sm:col-span-2">
                                 <div className="max-w-lg space-y-4">
-                                    {element.Options.map((option: any) => (
+                                    {element.options.map((option: any) => (
                                         <div key={option.id} className="relative flex items-start">
                                             <div className="flex items-center h-5">
                                                 <input
