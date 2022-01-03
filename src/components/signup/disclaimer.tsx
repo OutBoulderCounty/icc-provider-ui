@@ -12,7 +12,7 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
   const [checked, setChecked] = React.useState<boolean>(signUpInfo.disclaimer || false);
 
   const handleSubmitDisclaimer = () => {
-    signUpInfo.AgreementAccepted = checked;
+    signUpInfo.agreement_accepted = checked;
     localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(signUpInfo));
     setSignUpStep(signUpStep + 1);
   };

@@ -77,7 +77,7 @@ export const requiredInfoCheck = async () => {
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
     );
-    if (!signUpInfo.AgreementAccepted) {
+    if (!signUpInfo.agreement_accepted) {
         alert('Please complete the sign up process');
         window.location.href = '/complete-sign-up';
     }
@@ -90,7 +90,7 @@ export const updateUserInfo = async () => {
     );
 
     if (!signUpInfo.noData) {
-        signUpInfo.Address = `${signUpInfo.Street};${signUpInfo.City};${signUpInfo.State};${signUpInfo.Zip}`;
+        signUpInfo.Address = `${signUpInfo.street};${signUpInfo.city};${signUpInfo.state};${signUpInfo.zip}`;
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', sessionToken ? sessionToken : '');
