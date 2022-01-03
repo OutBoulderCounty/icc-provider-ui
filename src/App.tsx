@@ -1,5 +1,10 @@
+/**
+ * TODO:
+ * - /form/:id route will work on dev but on production it will append a random extra number to the :id
+ *    - address this directly or by switching from a router to a render toggle - either rendering the list or the form (when one is selected)
+ */
 import React from 'react';
-import Dashboard from './components/dash';
+// import Dashboard from './components/dash';
 import Login from './components/login';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
@@ -23,7 +28,8 @@ const App: React.FC = () => {
                     path="/"
                     element={
                         <ProtectedRoute>
-                            <Dashboard />
+                            {/* <Dashboard /> */}
+                            <Forms />
                         </ProtectedRoute>
                     }
                 ></Route>

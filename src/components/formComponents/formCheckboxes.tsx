@@ -1,6 +1,16 @@
 import React from 'react';
 
 function FormCheckboxes({ element, setFormData }: any) {
+
+    const updatedOptionList = (optionId: number) => {
+      const optionList = element.option_ids || [];
+      if (optionList.includes(optionId)) {
+        return optionList.filter((option: any) => option !== optionId);
+      } else {
+        return [...optionList, optionId];
+      }
+    }
+
     return (
         <fieldset className="space-y-5 mb-4">
             <legend className="sr-only">{element.label}</legend>
@@ -27,7 +37,7 @@ function FormCheckboxes({ element, setFormData }: any) {
                                                     type="checkbox"
                                                     className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300 rounded"
                                                     checked={option.value}
-                                                    onChange={(e) => setFormData((prev: any) => ({ ...prev}))}
+                                                    onChange={(e) => setFormData((prev: any) => ({ ...prev, [element.id]: {...element, option_ids: updatedOptionList(option.id)} }))}
                                                 />
                                             </div>
                                             <div className="ml-3 text-sm">

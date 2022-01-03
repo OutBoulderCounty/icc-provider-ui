@@ -1,6 +1,13 @@
+/**
+ * TODO:
+ * - Get access to a form with multiple radio button elements to test
+ * - Update state with the setFormData method
+ */
 import React from 'react'
 
-function FormRadio({ element }: any) {
+function FormRadio({ element, setFormData }: any) {
+
+  const updatedOptionList = (optionId: number) => [optionId]
 
 
 
@@ -17,8 +24,9 @@ function FormRadio({ element }: any) {
                 id={option.id}
                 name="notification-method"
                 type="radio"
-                defaultChecked={option.id === 'email'}
+                defaultChecked={option.id === 1}
                 className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300"
+                onChange={(e) => setFormData((prev: any) => ({ ...prev, [element.id]: {...element, option_ids: updatedOptionList(option.id)} }))}
               />
               <label htmlFor={option.id} className="ml-3 block text-sm font-medium text-gray-700">
                 {option.name}

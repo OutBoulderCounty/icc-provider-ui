@@ -106,7 +106,7 @@ export const updateUserInfo = async () => {
         }
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
-            JSON.stringify(userInfoData.user).replace(/&apos;/g, '\'')
+            JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
         );
     }
 };
@@ -118,7 +118,8 @@ export const getForm = async (formId: string | undefined) => {
     headers.append('Authorization', sessionToken ? sessionToken : '');
 
     const response = await fetch(
-        process.env.REACT_APP_API_ENDPOINT + `/form/${formId}`, {
+        process.env.REACT_APP_API_ENDPOINT + `/form/${formId}`,
+        {
             method: 'GET',
             headers: headers,
         }
@@ -128,6 +129,52 @@ export const getForm = async (formId: string | undefined) => {
         throw new Error(data.error);
     }
     return data.form;
+};
+
+export const saveForm = async (formData: any) => {
+    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+    const responses = [];
+    const errors = [];
+
+    for (let element of formData) {
+        if (element.value || element.option_ids) {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Authorization', sessionToken ? sessionToken : '');
+            const response = await fetch(
+                process.env.REACT_APP_API_ENDPOINT + `/response`,
+                {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(updatedElement(element)),
+                }
+            );
+            const data = await response.json();
+            if (data.error) {
+              errors.push(data.error);
+            } else {
+              responses.push(data.response);
+            }
+        }
+    }
+    if (errors.length > 0) {
+        throw new Error(errors.join('\n'));
+    }
+    return responses;
+};
+
+const updatedElement = (element: any) => {
+    if (element.option_ids) {
+        return {
+            element_id: element.id,
+            option_ids: element.option_ids,
+        };
+    } else {
+        return {
+            element_id: element.id,
+            value: element.value,
+        };
+    }
 };
 
 export default ProtectedRoute;

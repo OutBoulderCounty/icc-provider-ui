@@ -14,7 +14,7 @@ function FormTextArea({ element, setFormData }: any) {
                     rows={3}
                     id={element.id}
                     className="max-w-lg shadow-sm block w-full focus:ring-violet-light focus:border-violet-light sm:text-sm border border-gray-300 rounded-md"
-                    value={element.value}
+                    value={element.value || ''}
                     onChange={(e) => setFormData((prev: any) => ({ ...prev, [element.id]: {...element, value: e.target.value} }))}
                 />
             </div>
