@@ -1,3 +1,8 @@
+/**
+ * TODO:
+ * - /form/:id route will work on dev but on production it will append a random extra number to the :id
+ *    - address this directly or by switching from a router to a render toggle - either rendering the list or the form (when one is selected)
+ */
 import React from 'react';
 import Dashboard from './components/dash';
 import Login from './components/login';
