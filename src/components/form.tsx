@@ -7,7 +7,7 @@ import FormCheckboxes from './formComponents/formCheckboxes';
 import FormNumber from './formComponents/formNumber';
 import { saveForm } from '../utils';
 
-const Form: React.FC<any> = (form) => {
+const Form: React.FC<any> = ({ form, setIsLoading }) => {
     const [formData, setFormData] = React.useState(
         Object.fromEntries(
             form.elements.map((element: any) => [element.id, element])
@@ -24,9 +24,9 @@ const Form: React.FC<any> = (form) => {
     }
 
     const handleFormSubmit = (e: React.SyntheticEvent) => {
-        // TODO: LOADING INDICATOR
         e.preventDefault();
         (async () => {
+            setIsLoading(true);
             try {
                 await saveForm(Object.values(formData));
                 window.location.href = '/forms';
