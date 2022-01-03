@@ -7,7 +7,7 @@ import FormCheckboxes from './formComponents/formCheckboxes';
 import FormNumber from './formComponents/formNumber';
 
 const Form: React.FC<any> = (form) => {
-    const [formData, setFormData] = React.useState(Object.fromEntries(form.Elements.map((element: any) => ([element.id, element]))));
+    const [formData, setFormData] = React.useState(Object.fromEntries(form.elements.map((element: any) => ([element.id, element]))));
     const [header, setHeader] = React.useState({ noData: true });
 
     useEffect(() => {
@@ -15,8 +15,8 @@ const Form: React.FC<any> = (form) => {
     }, [formData, form.name]);
 
 
-    if (form.Elements[0].type === 'Header' && header.noData) {
-        setHeader(form.Elements[0]);
+    if (form.elements[0].type === 'Header' && header.noData) {
+        setHeader(form.elements[0]);
     }
 
     return (

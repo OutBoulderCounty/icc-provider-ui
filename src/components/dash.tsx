@@ -1,3 +1,9 @@
+/**
+ * TODO:
+ * - [ ] Show current account status (approved, waiting approval)
+ * - [ ] Show current account info for logged in user
+ */
+
 import React from 'react';
 import { Dialog, Transition } from "@headlessui/react"
 import {XIcon} from "@heroicons/react/outline"

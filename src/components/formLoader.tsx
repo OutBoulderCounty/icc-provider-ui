@@ -9,6 +9,7 @@ type FormProps = {
   name: string;
   required: boolean;
   live: false;
+  elements: any;
 }
 
 const FormLoader = () => {

@@ -12,7 +12,7 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
   const [checked, setChecked] = React.useState<boolean>(signUpInfo.disclaimer || false);
 
   const handleSubmitDisclaimer = () => {
-    signUpInfo.AgreementAccepted = checked;
+    signUpInfo.agreement_accepted = checked;
     localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(signUpInfo));
     setSignUpStep(signUpStep + 1);
   };
@@ -99,7 +99,7 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                     </ul>
 
                     <p>
-                        You can follow this <a href='https://develop.inclusivecareco.org/glossary'>link</a> to find a
+                        You can follow this <a href='https://develop.inclusivecareco.org/glossary' target="blank">link</a> to find a
                         glossary of terms that we use throughout our
                         questionnaire.
                     </p>

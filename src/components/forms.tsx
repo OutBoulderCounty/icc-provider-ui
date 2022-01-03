@@ -63,6 +63,8 @@ const Forms: React.FC = () => {
         })();
     }
 
+
+
     return (
         <div className="flex flex-col h-full">
             <div className="-my-3 sm:-mx-6 lg:-mx-8">
@@ -87,7 +89,7 @@ const Forms: React.FC = () => {
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Status
+                                        Live
                                     </th>
                                     <th
                                         scope="col"
@@ -131,7 +133,7 @@ const Forms: React.FC = () => {
                                                 href={`/form/${form.id}`}
                                                 className="text-violet hover:text-violet-darkest"
                                             >
-                                                Edit
+                                                Update
                                             </a>
                                         </td>
                                     </tr>
