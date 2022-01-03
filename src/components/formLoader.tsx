@@ -10,6 +10,7 @@ type FormProps = {
   required: boolean;
   live: false;
   elements: any;
+  updated: any;
 }
 
 const FormLoader = () => {
@@ -18,8 +19,8 @@ const FormLoader = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     if (!form?.name) {
+      setIsLoading(true);
       (async () => {
         try {
           const form = await getForm(id)
@@ -28,9 +29,8 @@ const FormLoader = () => {
           alert(e)
         }
       })();
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }, [setIsLoading, form, id])
 
   if (isLoading) {
@@ -38,7 +38,7 @@ const FormLoader = () => {
   }
 
   if (form?.name) {
-    return <Form {...form} />
+    return <Form form={form} setIsLoading={setIsLoading} />
   }
 
   return <Loader />
