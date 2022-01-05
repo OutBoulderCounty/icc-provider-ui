@@ -45,7 +45,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
         })();
     };
 
-    const handleCanelClick = (e: React.SyntheticEvent) => {
+    const handleCancelClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
         window.location.href = '/forms';
     };
@@ -127,7 +127,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                             <button
                                 type="button"
                                 className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
-                                onClick={handleCanelClick}
+                                onClick={handleCancelClick}
                             >
                                 Cancel
                             </button>
