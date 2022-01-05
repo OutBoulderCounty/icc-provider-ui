@@ -85,12 +85,12 @@ const Forms: React.FC = () => {
                                     >
                                         Required
                                     </th>
-                                    <th
+                                    {/* <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
                                         Live
-                                    </th>
+                                    </th> */}
                                     <th
                                         scope="col"
                                         className="relative px-6 py-3"
@@ -121,19 +121,19 @@ const Forms: React.FC = () => {
                                                 {form.required ? 'Yes' : 'No'}
                                             </Active>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <Active isActive={form.live}>
                                                 {form.live
                                                     ? 'Active'
                                                     : 'Inactive'}
                                             </Active>
-                                        </td>
+                                        </td> */}
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a
                                                 href={`/form/${form.id}`}
                                                 className="text-violet hover:text-violet-darkest"
                                             >
-                                                Update
+                                                Create
                                             </a>
                                         </td>
                                     </tr>
