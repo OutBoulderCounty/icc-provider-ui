@@ -69,7 +69,7 @@ const Forms: React.FC = () => {
         <div className="flex flex-col h-full">
             <div className="-my-3 sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="shadow sm:rounded-lg p-5">
+                    <div>
                         <table className="divide-y divide-gray-200 max-w-xl mx-auto border border-gray-200 h-full">
                             <thead className="bg-gray-50">
                                 <tr>
@@ -77,7 +77,7 @@ const Forms: React.FC = () => {
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        Name
+                                        Form Name
                                     </th>
                                     <th
                                         scope="col"
@@ -85,17 +85,17 @@ const Forms: React.FC = () => {
                                     >
                                         Required
                                     </th>
-                                    <th
+                                    {/* <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
                                         Live
-                                    </th>
+                                    </th> */}
                                     <th
                                         scope="col"
-                                        className="relative px-6 py-3"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
-                                        <span className="sr-only">Edit</span>
+                                        Options
                                     </th>
                                 </tr>
                             </thead>
@@ -121,19 +121,19 @@ const Forms: React.FC = () => {
                                                 {form.required ? 'Yes' : 'No'}
                                             </Active>
                                         </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <Active isActive={form.live}>
                                                 {form.live
                                                     ? 'Active'
                                                     : 'Inactive'}
                                             </Active>
-                                        </td>
+                                        </td> */}
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a
                                                 href={`/form/${form.id}`}
                                                 className="text-violet hover:text-violet-darkest"
                                             >
-                                                Update
+                                                Create
                                             </a>
                                         </td>
                                     </tr>

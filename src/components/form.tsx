@@ -1,3 +1,12 @@
+/**
+ * TODO:
+ * - [X] Cancel button functionality
+ * - [ ] Utilize 'required' key on form elements
+ * - [ ] Utilize 'position' key on form elements
+ * - [ ]
+ * - [ ]
+ */
+
 import React, { useEffect } from 'react';
 import FormHeader from './formComponents/formHeader';
 import FormTextArea from './formComponents/formTextArea';
@@ -34,6 +43,11 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                 alert(e);
             }
         })();
+    };
+
+    const handleCancelClick = (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        window.location.href = '/forms';
     };
 
     return (
@@ -113,6 +127,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                             <button
                                 type="button"
                                 className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-light"
+                                onClick={handleCancelClick}
                             >
                                 Cancel
                             </button>

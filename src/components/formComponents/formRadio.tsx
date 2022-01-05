@@ -22,7 +22,7 @@ function FormRadio({ element, setFormData }: any) {
             <div key={option.id} className="flex items-center">
               <input
                 id={option.id}
-                name="notification-method"
+                name={element.id}
                 type="radio"
                 defaultChecked={option.id === 1}
                 className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300"

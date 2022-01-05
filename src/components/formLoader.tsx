@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import Loader from './loader'
 import { getForm } from '../utils'
 import Form from './form'
+import NotificationBanner from './notificationBanner'
 
 type FormProps = {
   id: number;
@@ -34,7 +35,12 @@ const FormLoader = () => {
   }, [setIsLoading, form, id])
 
   if (isLoading) {
-    return <Loader />
+    return (
+      <>
+      <NotificationBanner />
+      <Loader />
+      </>
+    )
   }
 
   if (form?.name) {
