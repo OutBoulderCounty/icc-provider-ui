@@ -36,6 +36,14 @@ const App: React.FC = () => {
                         </ProtectedRoute>
                     }
                 ></Route>
+                <Route
+                    path="/form/:id"
+                    element={
+                        <ProtectedRoute>
+                            <FormLoader />
+                        </ProtectedRoute>
+                    }
+                ></Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/localauth" element={<LocalAuth />}></Route>
@@ -52,14 +60,6 @@ const App: React.FC = () => {
                     element={
                         <ProtectedRoute>
                             <ProviderInfo />
-                        </ProtectedRoute>
-                    }
-                ></Route>
-                <Route
-                    path="/form/:id"
-                    element={
-                        <ProtectedRoute>
-                            <FormLoader />
                         </ProtectedRoute>
                     }
                 ></Route>
