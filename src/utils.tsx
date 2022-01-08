@@ -69,7 +69,7 @@ export const getUserInfo = async () => {
 
     localStorage.setItem(
         LOCAL_STORAGE_SIGN_UP_INFO,
-        JSON.stringify(userInfoData.user)
+        JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
     );
 };
 
@@ -88,12 +88,12 @@ export const updateUserInfo = async () => {
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{ "noData": true }'
     );
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', sessionToken ? sessionToken : '');
 
     if (!signUpInfo.noData) {
         signUpInfo.address = `${signUpInfo.street};${signUpInfo.city};${signUpInfo.state};${signUpInfo.zip}`;
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', sessionToken ? sessionToken : '');
 
         const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
             method: 'PUT',
@@ -108,6 +108,17 @@ export const updateUserInfo = async () => {
             LOCAL_STORAGE_SIGN_UP_INFO,
             JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
         );
+    }
+
+    if (signUpInfo.agreement_accepted) {
+        const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user/agreement/true', {
+            method: 'PUT',
+            headers: headers,
+        })
+        const agreementStatus = await res.json();
+        if (agreementStatus.error) {
+            throw new Error(agreementStatus.error);
+        }
     }
 };
 
