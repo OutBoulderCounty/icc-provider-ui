@@ -22,7 +22,6 @@ const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
               try {
                 await getUserInfo()
                 await login();
-                await requiredInfoCheck();
               } catch (e) {
                 await logout()
                 window.location.href = '/login';
