@@ -14,7 +14,7 @@ import FormRadio from './formComponents/formRadio';
 import FormText from './formComponents/formText';
 import FormCheckboxes from './formComponents/formCheckboxes';
 import FormNumber from './formComponents/formNumber';
-import { saveForm } from '../utils';
+import { saveForm, requiredInfoCheck } from '../utils';
 
 const Form: React.FC<any> = ({ form, setIsLoading }) => {
     const [formData, setFormData] = React.useState(
@@ -24,6 +24,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
     );
     const [header, setHeader] = React.useState({ noData: true });
 
+
     useEffect(() => {
         localStorage.setItem('form' + form.name, JSON.stringify(formData));
     }, [formData, form.name]);
@@ -31,6 +32,11 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
     if (form.elements[0].type === 'Header' && header.noData) {
         setHeader(form.elements[0]);
     }
+
+    useEffect(() => {
+        requiredInfoCheck();
+    })
+
 
     const handleFormSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
