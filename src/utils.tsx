@@ -15,24 +15,20 @@ const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
         LOCAL_STORAGE_SESSION_TOKEN
     );
     const { authed, login, logout } = AuthConsumer();
-    // console.log("loaded a protected route....");
 
     useEffect(() => {
         if (existingSessionToken && !authed) {
             (async () => {
               try {
                 await getUserInfo()
-                // console.log('got user info');
                 await login();
                 await requiredInfoCheck();
               } catch (e) {
-                // console.log(e);
                 await logout()
                 window.location.href = '/login';
               }
             })();
           }
-        // console.log("Route Status: ", authed, existingSessionToken);
     });
 
     return (authed || existingSessionToken) ? <>{children}</> : <Navigate to="/login" />;

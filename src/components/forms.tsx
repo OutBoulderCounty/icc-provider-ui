@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Loader from './loader';
 import { LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
 
@@ -129,12 +129,12 @@ const Forms: React.FC = () => {
                                             </Active>
                                         </td> */}
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a
-                                                href={`/form/${form.id}`}
+                                            <Link
+                                                to={`/form/${form.id}`}
                                                 className="text-violet hover:text-violet-darkest"
                                             >
                                                 Create
-                                            </a>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}
