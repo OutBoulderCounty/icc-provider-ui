@@ -15,7 +15,7 @@ function LocalAuth() {
 
     useEffect(() => {
         if (existingSessionToken) {
-          login();
+          window.location.href = '/';
         } else if (token) {
           (async () => {
             try {
