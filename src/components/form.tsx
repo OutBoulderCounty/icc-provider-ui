@@ -8,6 +8,7 @@
  */
 
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FormHeader from './formComponents/formHeader';
 import FormTextArea from './formComponents/formTextArea';
 import FormRadio from './formComponents/formRadio';
@@ -17,6 +18,7 @@ import FormNumber from './formComponents/formNumber';
 import { saveForm, requiredInfoCheck } from '../utils';
 
 const Form: React.FC<any> = ({ form, setIsLoading }) => {
+  const navigate = useNavigate();
     const [formData, setFormData] = React.useState(
         Object.fromEntries(
             form.elements.map((element: any) => [element.id, element])
@@ -44,7 +46,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
             setIsLoading(true);
             try {
                 await saveForm(Object.values(formData));
-                window.location.href = '/forms';
+                navigate('/forms');
             } catch (e) {
                 alert(e);
             }
@@ -53,7 +55,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
 
     const handleCancelClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        window.location.href = '/forms';
+        navigate('/forms');
     };
 
     return (

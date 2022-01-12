@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 import AuthConsumer from './context/authContext';
 
 export const LOCAL_STORAGE_SESSION_TOKEN = 'sessionToken';
@@ -11,6 +11,7 @@ type Props = {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
+    const navigate = useNavigate();
     const existingSessionToken = localStorage.getItem(
         LOCAL_STORAGE_SESSION_TOKEN
     );
@@ -24,7 +25,7 @@ const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
                 await login();
               } catch (e) {
                 await logout()
-                window.location.href = '/login';
+                navigate('/login');
               }
             })();
           }
