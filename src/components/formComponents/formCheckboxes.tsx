@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormCheckboxes({ element, setFormData }: any) {
+function FormCheckboxes({ element, setFormData, required }: any) {
 
     const updatedOptionList = (optionId: number) => {
       const optionList = element.option_ids || [];
@@ -13,7 +13,18 @@ function FormCheckboxes({ element, setFormData }: any) {
 
     return (
         <fieldset className="space-y-5 mb-4">
-            <legend className="sr-only">{element.label}</legend>
+            <legend className="sr-only">
+              {element.label}
+              {required && (
+                    <span
+                        className="text-violet-light font-bold"
+                        title="Required"
+                        aria-label="Required"
+                    >
+                        *
+                    </span>
+                )}
+              </legend>
             <div className="space-y-6 sm:space-y-5 divide-y divide-gray-200">
                 <div className="pt-6 sm:pt-5">
                     <div role="group" aria-labelledby="label-email">

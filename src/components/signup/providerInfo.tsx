@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckEmailModal from './checkEmailModal';
 import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
 
@@ -7,12 +8,12 @@ import { LOCAL_STORAGE_SIGN_UP_INFO, updateUserInfo } from '../../utils';
 const ProviderInfo: React.FC = () => {
     // const [image, setImage] = React.useState('');
     // const imageInput = React.useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
     const signUpInfo = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}'
     );
-    const addressArray = signUpInfo.address?.split(';') || [];
 
-    const [providerInfo, setProviderInfo] = React.useState({...signUpInfo, street: addressArray[0], city: addressArray[1], state: addressArray[2], zip: addressArray[3]});
+    const [providerInfo, setProviderInfo] = React.useState({...signUpInfo});
     const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
     useEffect(() => {
@@ -43,7 +44,7 @@ const ProviderInfo: React.FC = () => {
         (async () => {
             try {
               await updateUserInfo();
-              window.location.href = '/';
+              navigate('/');
             } catch (e) {
                 alert(e);
             }

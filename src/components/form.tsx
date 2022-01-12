@@ -1,13 +1,11 @@
 /**
  * TODO:
  * - [X] Cancel button functionality
- * - [ ] Utilize 'required' key on form elements
- * - [ ] Utilize 'position' key on form elements
- * - [ ]
- * - [ ]
+ * - [X] Utilize 'required' key on form elements
  */
 
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FormHeader from './formComponents/formHeader';
 import FormTextArea from './formComponents/formTextArea';
 import FormRadio from './formComponents/formRadio';
@@ -17,6 +15,7 @@ import FormNumber from './formComponents/formNumber';
 import { saveForm, requiredInfoCheck } from '../utils';
 
 const Form: React.FC<any> = ({ form, setIsLoading }) => {
+  const navigate = useNavigate();
     const [formData, setFormData] = React.useState(
         Object.fromEntries(
             form.elements.map((element: any) => [element.id, element])
@@ -44,7 +43,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
             setIsLoading(true);
             try {
                 await saveForm(Object.values(formData));
-                window.location.href = '/forms';
+                navigate('/forms');
             } catch (e) {
                 alert(e);
             }
@@ -53,7 +52,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
 
     const handleCancelClick = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        window.location.href = '/forms';
+        navigate('/forms');
     };
 
     return (
@@ -75,6 +74,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={element.required}
                                             />
                                         );
                                     } else if (
@@ -86,6 +86,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={element.required}
                                             />
                                         );
                                     } else if (element.type === 'Text') {
@@ -95,6 +96,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={element.required}
                                             />
                                         );
                                     } else if (element.type === 'Checkboxes') {
@@ -104,6 +106,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={element.required}
                                             />
                                         );
                                     } else if (element.type === 'Number') {
@@ -113,6 +116,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={element.required}
                                             />
                                         );
                                     }

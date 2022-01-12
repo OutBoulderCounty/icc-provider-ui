@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 import AuthConsumer from './context/authContext';
 
 export const LOCAL_STORAGE_SESSION_TOKEN = 'sessionToken';
@@ -11,6 +11,7 @@ type Props = {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
+    const navigate = useNavigate();
     const existingSessionToken = localStorage.getItem(
         LOCAL_STORAGE_SESSION_TOKEN
     );
@@ -24,7 +25,7 @@ const ProtectedRoute: React.FC<Props> = ({ children }: Props) => {
                 await login();
               } catch (e) {
                 await logout()
-                window.location.href = '/login';
+                navigate('/login');
               }
             })();
           }
@@ -73,9 +74,10 @@ export const getUserInfo = async () => {
         throw new Error(userInfoData.error);
     }
 
+    const addressArray = userInfoData.user.address?.split(';') || [];
     localStorage.setItem(
         LOCAL_STORAGE_SIGN_UP_INFO,
-        JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
+        JSON.stringify({...userInfoData.user, street: addressArray[0] || "", city: addressArray[1] || "", state: addressArray[2] || "", zip: addressArray[3] || ""})
     );
 };
 
@@ -104,27 +106,18 @@ export const updateUserInfo = async () => {
         const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
             method: 'PUT',
             headers: headers,
-            body: JSON.stringify(signUpInfo).replace(/[']/g, '&apos;'),
+            body: JSON.stringify(signUpInfo)
         });
         const userInfoData = await res.json();
         if (userInfoData.error) {
             throw new Error(userInfoData.error);
         }
+        
+        const addressArray = userInfoData.user.address?.split(';') || [];
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
-            JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
+            JSON.stringify({...userInfoData.user, street: addressArray[0] || "", city: addressArray[1] || "", state: addressArray[2] || "", zip: addressArray[3] || ""})
         );
-    }
-
-    if (signUpInfo.agreement_accepted) {
-        const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user/agreement/true', {
-            method: 'PUT',
-            headers: headers,
-        })
-        const agreementStatus = await res.json();
-        if (agreementStatus.error) {
-            throw new Error(agreementStatus.error);
-        }
     }
 };
 
