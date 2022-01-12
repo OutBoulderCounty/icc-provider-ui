@@ -1,21 +1,62 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../button';
-import { LOCAL_STORAGE_SIGN_UP_INFO } from '../../utils'
+import {
+    LOCAL_STORAGE_SIGN_UP_INFO,
+    LOCAL_STORAGE_SESSION_TOKEN,
+} from '../../utils';
 
 interface SignUpProps {
-  signUpStep: number;
-  setSignUpStep: (step: number) => void;
+    signUpStep: number;
+    setSignUpStep: (step: number) => void;
 }
 
 const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
-  const signUpInfo = JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}');
-  const [checked, setChecked] = React.useState<boolean>(signUpInfo.disclaimer || false);
+    const sessionToken = localStorage.getItem(LOCAL_STORAGE_SESSION_TOKEN);
+    const [signUpInfo, setSignUpInfo] = React.useState(
+        JSON.parse(localStorage.getItem(LOCAL_STORAGE_SIGN_UP_INFO) || '{}')
+    );
+    const [checked, setChecked] = React.useState<boolean>(
+        signUpInfo.disclaimer || false
+    );
+    const [submitted, setSubmitted] = React.useState<boolean>(false);
 
-  const handleSubmitDisclaimer = () => {
-    signUpInfo.agreement_accepted = checked;
-    localStorage.setItem(LOCAL_STORAGE_SIGN_UP_INFO, JSON.stringify(signUpInfo));
-    setSignUpStep(signUpStep + 1);
-  };
+    const handleSubmitDisclaimer = () => {
+        setSubmitted(true);
+    };
+
+    useEffect(() => {
+        if (submitted) {
+            (async () => {
+                const headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+                headers.append(
+                    'Authorization',
+                    sessionToken ? sessionToken : ''
+                );
+
+                const res = await fetch(
+                    process.env.REACT_APP_API_ENDPOINT + '/user/agreement/true',
+                    {
+                        method: 'PUT',
+                        headers: headers,
+                    }
+                );
+                const agreementStatus = await res.json();
+                if (agreementStatus.error) {
+                    throw new Error(agreementStatus.error);
+                }
+                setSignUpInfo((prev: any) => ({
+                    ...prev,
+                    agreement_accepted: true,
+                }));
+                localStorage.setItem(
+                  LOCAL_STORAGE_SIGN_UP_INFO,
+                  JSON.stringify(signUpInfo)
+              );
+                setSignUpStep(signUpStep + 1);
+            })();
+        }
+    });
 
     return (
         <div className="relative py-16 bg-white overflow-hidden">
@@ -44,7 +85,7 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                     </p>
                 </div>
                 <div className="mt-6 text-base prose prose-violet prose-lg text-gray-500 mx-auto">
-                    <p className='text-base'>
+                    <p className="text-base">
                         Our questionnaire is designed to provide our users with
                         a fully transparent view of the responses that you
                         input. <strong>Please be aware</strong> that all your
@@ -99,8 +140,14 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                     </ul>
 
                     <p>
-                        You can follow this <a href='https://develop.inclusivecareco.org/glossary' target="blank">link</a> to find a
-                        glossary of terms that we use throughout our
+                        You can follow this{' '}
+                        <a
+                            href="https://develop.inclusivecareco.org/glossary"
+                            target="blank"
+                        >
+                            link
+                        </a>{' '}
+                        to find a glossary of terms that we use throughout our
                         questionnaire.
                     </p>
                     {/* <p>
@@ -113,22 +160,32 @@ const Disclaimer: React.FC<SignUpProps> = ({ signUpStep, setSignUpStep }) => {
                     </p>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="max-w-3xl mx-auto flex justify-between">
-                            <Checkbox setChecked={setChecked} checked={checked} />
-                            <Button className="disabled:opacity-50 disabled:cursor-not-allowed" color="violet" disabled={!checked} onClick={handleSubmitDisclaimer}>Continue</Button>
+                            <Checkbox
+                                setChecked={setChecked}
+                                checked={checked}
+                            />
+                            <Button
+                                className="disabled:opacity-50 disabled:cursor-not-allowed"
+                                color="violet"
+                                disabled={!checked}
+                                onClick={handleSubmitDisclaimer}
+                            >
+                                Continue
+                            </Button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
 
 type Props = {
-  checked: boolean;
-  setChecked: React.Dispatch<React.SetStateAction<boolean>>;
-}
+    checked: boolean;
+    setChecked: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
+export const Checkbox: React.FC<Props> = ({ checked, setChecked }: Props) => {
     return (
         <fieldset className="space-y-5">
             <legend className="sr-only">Notifications</legend>
@@ -140,7 +197,7 @@ export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
                         name="comments"
                         type="checkbox"
                         checked={checked}
-                        onChange={() => setChecked(prev => !prev)}
+                        onChange={() => setChecked((prev) => !prev)}
                         className="focus:ring-violet-light h-4 w-4 text-violet border-gray-300 rounded"
                     />
                 </div>
@@ -155,6 +212,6 @@ export const Checkbox:React.FC<Props> = ({checked, setChecked}: Props) => {
             </div>
         </fieldset>
     );
-}
+};
 
 export default Disclaimer;

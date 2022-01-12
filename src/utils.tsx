@@ -74,9 +74,10 @@ export const getUserInfo = async () => {
         throw new Error(userInfoData.error);
     }
 
+    const addressArray = userInfoData.user.address?.split(';') || [];
     localStorage.setItem(
         LOCAL_STORAGE_SIGN_UP_INFO,
-        JSON.stringify(userInfoData.user)
+        JSON.stringify({...userInfoData.user, street: addressArray[0] || "", city: addressArray[1] || "", state: addressArray[2] || "", zip: addressArray[3] || ""})
     );
 };
 
@@ -111,21 +112,12 @@ export const updateUserInfo = async () => {
         if (userInfoData.error) {
             throw new Error(userInfoData.error);
         }
+        
+        const addressArray = userInfoData.user.address?.split(';') || [];
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
-            JSON.stringify(userInfoData.user)
+            JSON.stringify({...userInfoData.user, street: addressArray[0] || "", city: addressArray[1] || "", state: addressArray[2] || "", zip: addressArray[3] || ""})
         );
-    }
-
-    if (signUpInfo.agreement_accepted) {
-        const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user/agreement/true', {
-            method: 'PUT',
-            headers: headers,
-        })
-        const agreementStatus = await res.json();
-        if (agreementStatus.error) {
-            throw new Error(agreementStatus.error);
-        }
     }
 };
 

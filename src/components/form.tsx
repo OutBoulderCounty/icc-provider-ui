@@ -2,9 +2,6 @@
  * TODO:
  * - [X] Cancel button functionality
  * - [X] Utilize 'required' key on form elements
- * - [ ] Utilize 'position' key on form elements
- * - [ ]
- * - [ ]
  */
 
 import React, { useEffect } from 'react';
