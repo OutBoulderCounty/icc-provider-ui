@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Disclosure } from '@headlessui/react';
 import {
@@ -69,9 +69,11 @@ const NavItem: React.FC<navItem> = (item) => {
 
 const NavBar: React.FC = () => {
     const { authed, logout } = AuthConsumer();
+    const [items, setItems] = React.useState(navigationLoggedOut);
 
-    const loggedIn = authed;
-    const items = loggedIn ? navigationLoggedIn : navigationLoggedOut;
+    useEffect(() => {
+      setItems(authed ? navigationLoggedIn : navigationLoggedOut);
+    }, [authed]);
 
     return (
         <Disclosure as="nav" className="bg-white shadow max-h-max">
@@ -122,7 +124,7 @@ const NavBar: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
-                            {loggedIn && (
+                            {authed && (
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <Button
