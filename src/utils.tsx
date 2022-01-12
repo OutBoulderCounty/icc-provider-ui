@@ -76,7 +76,7 @@ export const getUserInfo = async () => {
 
     localStorage.setItem(
         LOCAL_STORAGE_SIGN_UP_INFO,
-        JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
+        JSON.stringify(userInfoData.user)
     );
 };
 
@@ -105,7 +105,7 @@ export const updateUserInfo = async () => {
         const res = await fetch(process.env.REACT_APP_API_ENDPOINT + '/user', {
             method: 'PUT',
             headers: headers,
-            body: JSON.stringify(signUpInfo).replace(/[']/g, '&apos;'),
+            body: JSON.stringify(signUpInfo)
         });
         const userInfoData = await res.json();
         if (userInfoData.error) {
@@ -113,7 +113,7 @@ export const updateUserInfo = async () => {
         }
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
-            JSON.stringify(userInfoData.user).replace(/&apos;/g, "'")
+            JSON.stringify(userInfoData.user)
         );
     }
 
