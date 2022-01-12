@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Loader from './loader';
 import { LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
@@ -34,56 +34,66 @@ const Forms: React.FC = () => {
     const [forms, setForms] = React.useState<Form[]>([]);
     const [isLoading, setIsLoading] = React.useState(false);
 
+    useEffect(() => {
+        if (!forms?.length) {
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Authorization', sessionToken ? sessionToken : '');
+
+            (async () => {
+                setIsLoading(true);
+                try {
+                    const res = await fetch(
+                        process.env.REACT_APP_API_ENDPOINT + '/forms',
+                        {
+                            method: 'GET',
+                            headers: headers,
+                        }
+                    );
+                    const data = await res.json();
+                    setForms(data.forms);
+                } catch (e) {
+                    setForms([
+                        { id: '', name: '', required: false, live: false },
+                    ]);
+                    alert(e);
+                }
+                setIsLoading(false);
+            })();
+        }
+    });
+
     if (isLoading) {
         return <Loader />;
-    }
-
-    if (!forms?.length) {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', sessionToken ? sessionToken : '');
-
-        (async () => {
-            setIsLoading(true);
-            try {
-                const res = await fetch(
-                    process.env.REACT_APP_API_ENDPOINT + '/forms',
-                    {
-                        method: 'GET',
-                        headers: headers,
-                    }
-                );
-                const data = await res.json();
-                setForms(data.forms);
-            } catch (e) {
-                setForms([{ id: '', name: '', required: false, live: false }]);
-                alert(e);
-            }
-            setIsLoading(false);
-        })();
     }
 
     const FormInstructions = () => {
         return (
             <div className="bg-white">
-            <div className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-                <p className="mt-1 text-gray-900 sm:tracking-tight">
-                    All of the required and supplemental forms can be found
-                    below. Your responses will be located verbatim on your
-                    profile for users to look over and determine a provider that
-                    is right for them. Be sure to update your responses on
-                    occasion and note what forms have been approved or flagged
-                    by our admins. If you have any questions or concerns please
-                    reach out to <a className="text-violet hover:text-violet-dark" href="mailto:icc@outboulder.org">icc@outboulder.org</a> and our coordinator will
-                    address these with you.
-                </p>
-                <p className="max-w-xl mt-5 mx-auto text-gray-500">
-                    Thank you for being a part of this revolutionary resource
-                    for the LGBTQ+ community.
-                </p>
-            </div>
-            </div>
+                <div className="max-w-7xl mx-auto py-5 px-4 sm:px-6 lg:px-8">
+                    <div className="text-center">
+                        <p className="mt-1 text-gray-900 sm:tracking-tight">
+                            All of the required and supplemental forms can be
+                            found below. Your responses will be located verbatim
+                            on your profile for users to look over and determine
+                            a provider that is right for them. Be sure to update
+                            your responses on occasion and note what forms have
+                            been approved or flagged by our admins. If you have
+                            any questions or concerns please reach out to{' '}
+                            <a
+                                className="text-violet hover:text-violet-dark"
+                                href="mailto:icc@outboulder.org"
+                            >
+                                icc@outboulder.org
+                            </a>{' '}
+                            and our coordinator will address these with you.
+                        </p>
+                        <p className="max-w-xl mt-5 mx-auto text-gray-500">
+                            Thank you for being a part of this revolutionary
+                            resource for the LGBTQ+ community.
+                        </p>
+                    </div>
+                </div>
             </div>
         );
     };
