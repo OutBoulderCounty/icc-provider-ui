@@ -77,6 +77,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={true}
                                             />
                                         );
                                     } else if (
@@ -88,6 +89,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={true}
                                             />
                                         );
                                     } else if (element.type === 'Text') {
@@ -97,6 +99,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={true}
                                             />
                                         );
                                     } else if (element.type === 'Checkboxes') {
@@ -106,6 +109,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={true}
                                             />
                                         );
                                     } else if (element.type === 'Number') {
@@ -115,6 +119,7 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
                                                 name={form.name}
                                                 element={element}
                                                 setFormData={setFormData}
+                                                required={true}
                                             />
                                         );
                                     }
