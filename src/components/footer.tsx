@@ -2,7 +2,6 @@ import React from "react"
 
 interface Props {
   className: string;
-  // aria-hidden: string;
 }
 
 const navigation = {
@@ -70,7 +69,7 @@ const Footer = () => (
             </a>
           ))}
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+        <p className="mt-8 text-center text-base text-gray-400">&copy; Out Boulder County, 2022</p>
       </div>
     </footer>
   )
