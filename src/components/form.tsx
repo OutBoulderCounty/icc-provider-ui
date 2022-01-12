@@ -1,7 +1,7 @@
 /**
  * TODO:
  * - [X] Cancel button functionality
- * - [ ] Utilize 'required' key on form elements
+ * - [X] Utilize 'required' key on form elements
  * - [ ] Utilize 'position' key on form elements
  * - [ ]
  * - [ ]
