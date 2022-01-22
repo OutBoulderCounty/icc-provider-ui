@@ -1,11 +1,16 @@
 import { useEffect } from 'react';
 import Loader from './loader';
-import { authenticateUserToken, requiredInfoCheck, getUserInfo, LOCAL_STORAGE_SESSION_TOKEN } from '../utils';
+import {
+    authenticateUserToken,
+    requiredInfoCheck,
+    getUserInfo,
+    LOCAL_STORAGE_SESSION_TOKEN,
+} from '../utils';
 import AuthConsumer from '../context/authContext';
 import { Navigate, useNavigate } from 'react-router';
 
 function LocalAuth() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
     const { authed, login, logout } = AuthConsumer();
     const existingSessionToken = localStorage.getItem(
         LOCAL_STORAGE_SESSION_TOKEN
@@ -16,19 +21,22 @@ function LocalAuth() {
 
     useEffect(() => {
         if (existingSessionToken) {
-          login();
+            login();
         } else if (token) {
-          (async () => {
-            try {
-            await authenticateUserToken(token, login);
-            await getUserInfo();
-            await requiredInfoCheck();
-          } catch (error) {
-            alert(error);
-            logout();
-            navigate('/login');
-          }
-          })();
+            (async () => {
+                try {
+                    await authenticateUserToken(token, login);
+                    await getUserInfo();
+                    const hasRequiredInfo = await requiredInfoCheck();
+                    if (!hasRequiredInfo) {
+                        navigate('/complete-sign-up');
+                    }
+                } catch (error) {
+                    alert(error);
+                    logout();
+                    navigate('/login');
+                }
+            })();
         }
     });
 

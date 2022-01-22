@@ -24,16 +24,25 @@ const Form: React.FC<any> = ({ form, setIsLoading }) => {
     const [header, setHeader] = React.useState({ noData: true });
 
 
-    useEffect(() => {
-        localStorage.setItem('form' + form.name, JSON.stringify(formData));
-    }, [formData, form.name]);
+    // useEffect(() => {
+    //     localStorage.setItem('form' + form.name, JSON.stringify(formData));
+    // }, [formData, form.name]);
 
     if (form.elements[0].type === 'Header' && header.noData) {
         setHeader(form.elements[0]);
     }
 
     useEffect(() => {
-        requiredInfoCheck();
+      (async () => {
+        try {
+          const hasRequiredInfo = await requiredInfoCheck();
+          if (!hasRequiredInfo) {
+              navigate('/complete-sign-up');
+          }
+      } catch (error) {
+          alert(error);
+      }
+      })();
     })
 
 
