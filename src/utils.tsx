@@ -87,8 +87,9 @@ export const requiredInfoCheck = async () => {
     );
     if (!signUpInfo.agreement_accepted) {
         alert('Please complete the sign up process');
-        window.location.href = '/complete-sign-up';
+        return false
     }
+    return true
 };
 
 export const updateUserInfo = async () => {
@@ -112,7 +113,7 @@ export const updateUserInfo = async () => {
         if (userInfoData.error) {
             throw new Error(userInfoData.error);
         }
-        
+
         const addressArray = userInfoData.user.address?.split(';') || [];
         localStorage.setItem(
             LOCAL_STORAGE_SIGN_UP_INFO,
