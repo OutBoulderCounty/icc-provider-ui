@@ -23,3 +23,4 @@ To have access to the development backend api, follow the Prerequites and How to
     ```
     npm start
     ```
+6. React will open a browser window to http://localhost:3000/
